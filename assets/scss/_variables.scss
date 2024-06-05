@@ -1,0 +1,26 @@
+$container-max-widths: (
+    xs: 312px,
+    sm: 540px,
+    md: 656px,
+    lg: 992px,
+    xl: 1140px,
+    xxl: 1424px
+);
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 1120px,
+    xl: 1200px,
+    xxl: 1450px
+);
+
+$container-padding-x: 1rem;
+
+$font-family-sans-serif: 'Montserrat', sans-serif;
+$font-size-root: 20px;
+
+$h1-font-size: 3.6rem;
+$menu-item-color: #dedede;
+$body-color: white;
