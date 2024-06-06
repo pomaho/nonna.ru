@@ -5,6 +5,7 @@
             'background-image': `url('/images/${background}')`,
         }"
     >
+        <div class="shading"></div>
         <div class="container">
             <div class="nonna-container">
                 <WidgetsHeader v-if="withHeader"/>
