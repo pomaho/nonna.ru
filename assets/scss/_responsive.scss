@@ -1,8 +1,7 @@
 @include media-breakpoint-down(xxl) {
-    .home-section {
+    .intro-section {
         height: 800px;
-    }
-    .home-section-1 {
+
         .header-logo-and-menu {
             margin-top: 55px;
         }
@@ -32,10 +31,9 @@
 }
 
 @include media-breakpoint-down(xxl) {
-    .home-section {
+    .intro-section {
         height: 800px;
-    }
-    .home-section-1 {
+
         .header-logo-and-menu {
             margin-top: 55px;
         }

@@ -1,23 +1,32 @@
-.home-section {
+.intro-section {
     height: 100vh;
+
+    > .container {
+        height: 100%;
+    }
 }
 
-.home-section-1 {
-    background-image: url('../images/home/section-1-bg.jpeg');
+.nonna-container {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-content {
+    display: block;
+}
+
+.intro-section {
     background-size: cover;
-    background-position: center 70%;
+    background-position: 50% 100%;
     overflow: hidden;
 
     .container {
         text-align: center;
-    }
-
-    .header-logo-and-menu {
-        margin-top: 95px;
-    }
-
-    h1 {
-        margin-top: 175px;
     }
 
     p {
@@ -28,12 +37,18 @@
     .nonna-btn {
         margin-top: 40px;
     }
+
+    .header-logo-and-menu {
+        top: 95px;
+    }
 }
 
 .header-logo-and-menu {
+    position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
 
     .navbar {
         text-transform: uppercase;
