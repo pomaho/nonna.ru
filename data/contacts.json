@@ -1,0 +1,24 @@
+{
+  "phone": "+7 (812) 677 17 62",
+  "email": "sales@eurohome.pro",
+  "socials": {
+    "vk": "https://vk.com/eurohome.official",
+    "instagram": "https://www.instagram.com/eurohome_spb/",
+    "telegram": "https://t.me/eurohomeofficial",
+    "youtube": "https://youtube.com/@eurohome_official?si=25mngzp-LzCf6LHS"
+  },
+  "addresses": [
+    {
+      "city": "Cанкт-Петербург",
+      "address": "ул. Куйбышева, д 13"
+    },
+    {
+      "city": "Москва",
+      "address": "Шелепихинская набережная, д. 34/2"
+    },
+    {
+      "city": "Dubai",
+      "address": "AJ Quoz 3, 8, 2 Street"
+    }
+  ]
+}
