@@ -99,6 +99,7 @@ h1, h2 {
     text-align: center;
 
     .row {
+        height: 670px;
         text-align: left;
         margin-top: 65px;
 
@@ -107,6 +108,15 @@ h1, h2 {
             flex-direction: column;
             padding-top: 60px;
             padding-left: 40px;
+
+            .address-container {
+                li {
+                    margin-top: 40px;
+                    > p {
+                        margin-bottom: 0;
+                    }
+                }
+            }
         }
 
         .footer-text {
@@ -146,6 +156,7 @@ h1, h2 {
 .social-icons {
     ul {
         padding: 0;
+
         > li {
             display: inline-block;
             margin-right: 1rem;
@@ -156,26 +167,27 @@ h1, h2 {
 .contact-icon {
     width: 64px;
     height: 64px;
+    background-size: contain;
 }
 
 .vk-contact-icon {
-    background: url('/public/images/vk_social.png');
+    background-image: url('/public/images/vk_social.png');
 }
 
 .instagram-contact-icon {
-    background: url('/public/images/instagram_social.png');
+    background-image: url('/public/images/instagram_social.png');
 }
 
 .telegram-contact-icon {
-    background: url('/public/images/telegram_social.png');
+    background-image: url('/public/images/telegram_social.png');
 }
 
 .youtube-contact-icon {
-    background: url('/public/images/youtube_social.png');
+    background-image: url('/public/images/youtube_social.png');
 }
 
 .phone-contact-icon {
-    background: url('/public/images/phone_icon.png');
+    background-image: url('/public/images/phone_icon.png');
 }
 
 .phone-link {
@@ -195,4 +207,8 @@ h1, h2 {
             margin-top: 20px;
         }
     }
+    h4, p {
+        font-size: 32px;
+    }
+
 }

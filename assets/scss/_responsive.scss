@@ -24,6 +24,37 @@
     }
 }
 
+@include media-breakpoint-down(xl) {
+    .phone-link {
+        font-size: 40px;
+    }
+
+    .footer {
+        min-height: auto;
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        .row {
+            height: 670px;
+            margin-top: 60px;
+
+            .footer-column {
+                padding-left: 0;
+
+                .address-container {
+                    h4, p {
+                        font-size: 24px;
+                    }
+                }
+            }
+        }
+
+        h2 {
+            font-size: 48px;
+        }
+    }
+}
+
 @include media-breakpoint-down(lg) {
     .intro-section {
         .header-logo-and-menu {
@@ -54,9 +85,31 @@
         }
     }
 
-
     h1 {
         font-size: 36px;
+    }
+
+    .footer {
+        min-height: auto;
+
+        .row {
+            height: auto;
+            margin-top: 40px;
+
+            .footer-column {
+                padding-left: 0;
+
+                .address-container {
+                    h4, p {
+                        font-size: 24px;
+                    }
+                }
+            }
+        }
+
+        h2 {
+            font-size: 32px;
+        }
     }
 }
 
@@ -82,5 +135,49 @@
 
     p {
         font-size: 16px;
+    }
+    .phone-link {
+        font-size: 32px;
+    }
+
+    .footer {
+        min-height: auto;
+
+        .row {
+            height: auto;
+            margin-top: 40px;
+
+            .footer-column {
+                padding-top: 0;
+                padding-left: 0;
+
+                .footer-text {
+                    margin-top: 20px;
+                }
+
+                .footer-logo {
+                    width: auto;
+                }
+
+                .phone-contact-icon {
+                    margin-top: 70px;
+                }
+
+                .address-container {
+                    h4, p {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+        }
     }
 }
