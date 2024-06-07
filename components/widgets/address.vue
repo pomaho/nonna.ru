@@ -3,8 +3,8 @@
     <div class="address-container">
         <ul>
             <li v-for="(address, index) in contacts.addresses">
-                <h4 v-html="address.city"></h4>
-                <p v-html="address.address"></p>
+                <h4 v-html="$t(address.city)"></h4>
+                <p v-html="$t(address.address)"></p>
             </li>
         </ul>
     </div>

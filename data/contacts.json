@@ -9,16 +9,16 @@
   },
   "addresses": [
     {
-      "city": "Cанкт-Петербург",
-      "address": "ул. Куйбышева, д 13"
+      "city": "contact-city-1",
+      "address": "contact-address-1"
     },
     {
-      "city": "Москва",
-      "address": "Шелепихинская набережная, д. 34/2"
+      "city": "contact-city-2",
+      "address": "contact-address-2"
     },
     {
-      "city": "Dubai",
-      "address": "AJ Quoz 3, 8, 2 Street"
+      "city": "contact-city-3",
+      "address": "contact-address-3"
     }
   ]
 }

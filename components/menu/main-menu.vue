@@ -6,31 +6,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <nuxt-link :to="'/'" class="nav-link" aria-current="page">Коллекции</nuxt-link>
-                    </li>
-                    <li class="nav-item">
-                        <nuxt-link :to="'/'" class="nav-link" aria-current="page">На заказ
-                        </nuxt-link>
-                    </li>
-                    <li class="nav-item">
-                        <nuxt-link :to="'/'" class="nav-link" aria-current="page">О нас</nuxt-link>
-                    </li>
-                    <li class="nav-item">
-                        <nuxt-link :to="'/'" class="nav-link" aria-current="page">Проекты
-                        </nuxt-link>
-                    </li>
-                    <li class="nav-item">
-                        <nuxt-link :to="'/'" class="nav-link" aria-current="page">Новости
-                        </nuxt-link>
-                    </li>
-                    <li class="nav-item">
-                        <nuxt-link :to="'/'" class="nav-link" aria-current="page">Трейлер
-                        </nuxt-link>
-                    </li>
-                    <li class="nav-item">
-                        <nuxt-link :to="'/'" class="nav-link" aria-current="page">Контакты
-                        </nuxt-link>
+                    <li class="nav-item" v-for="(menuItem, index) in menu.items" :key="index">
+                        <nuxt-link :to="menuItem.href" class="nav-link" aria-current="page">{{ $t(menuItem.text) }}</nuxt-link>
                     </li>
                 </ul>
             </div>
@@ -39,8 +16,8 @@
 </template>
 
 <script setup>
+import menu from '~/data/menu.json';
 const { $bs } = useNuxtApp();
-
 onMounted(() => {
     try {
         const collapse = new $bs.Collapse('#navbarSupportedContent');
