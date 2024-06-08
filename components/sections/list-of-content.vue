@@ -19,7 +19,8 @@
                             </li>
 
                             <li class="nav-item" v-for="(category, index) in categories" :key="index">
-                                <nuxt-link :to="`/collection/${category.id}`" class="category-link nav-link" aria-current="page">
+                                <nuxt-link :to="`/collection/${category.id}`" class="category-link nav-link"
+                                           aria-current="page">
                                     {{ category.name }}
                                 </nuxt-link>
                             </li>
@@ -29,8 +30,15 @@
             </div>
             <div class="row g-3">
                 <div class="col-xl-4 col-lg-6 col-12" v-for="(content, index) in categoryContent" :key="index">
-                    <img class="category-content" :src="`/images/categroies/parket/${content.image}`"
-                         alt="картинка для контента">
+                    <div class="hover-box">
+                        <nuxt-link :to="'/collection/' + content.id">
+                            <img class="category-content" :src="`/images/categroies/parket/${content.image}`"
+                                 alt="картинка для контента">
+                            <div class="content-box flex-centered">
+                                <p>Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400</p>
+                            </div>
+                        </nuxt-link>
+                    </div>
                 </div>
             </div>
         </div>
