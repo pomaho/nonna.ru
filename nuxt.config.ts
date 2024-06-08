@@ -5,7 +5,7 @@ export default defineNuxtConfig({
             title: 'Nonna - лучший паркет!',
         }
     },
-    css: ['@/assets/scss/app.scss'],
+    css: ['@/assets/css/main.css', '@/assets/scss/app.scss'],
     modules: ['@nuxtjs/i18n'],
     i18n: {
         // Module Options

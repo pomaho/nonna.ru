@@ -4,16 +4,27 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <nuxt-link :to="'/collection'" class="category-link nav-link" aria-current="page">
+                        <span
+                            class="category-link nav-link"
+                            :class="{
+                                active: currentCategory === 'all'
+                            }"
+                            @click="changeCategory($event, 'all')"
+                        >
                             {{ $t('show-all-button') }}
-                        </nuxt-link>
+                        </span>
                     </li>
 
                     <li class="nav-item" v-for="(category, index) in categories" :key="index">
-                        <nuxt-link :to="`/collection/${category.id}`" class="category-link nav-link"
-                                   aria-current="page">
+                        <span
+                            class="category-link nav-link"
+                            :class="{
+                                active: currentCategory === category.id.toString()
+                            }"
+                            @click="changeCategory($event, category.id)"
+                        >
                             {{ category.name }}
-                        </nuxt-link>
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -24,5 +35,8 @@
 <script setup>
 defineProps({
     categories: Array,
+    categoriesType: String,
+    changeCategory: Function,
+    currentCategory: String,
 })
 </script>

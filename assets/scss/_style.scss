@@ -286,11 +286,16 @@ h1, h2 {
     .navbar-nav {
         .nav-item {
             font-weight: 600;
+
+            .nav-link.active {
+                color: $menu-active-item-color;
+            }
         }
 
-        .nav-item:first-child a {
+        .nav-item:first-child .nav-link {
             padding-left: 0;
         }
+
     }
 }
 
