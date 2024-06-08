@@ -2,23 +2,23 @@
   "items": [
     {
       "text": "menu-item-collection",
-      "href": "/"
+      "href": "/collection"
     },
     {
       "text": "menu-item-bespoke",
-      "href": "/"
+      "href": "/bespoke"
     },
     {
       "text": "menu-item-about-us",
-      "href": "/"
+      "href": "/about"
     },
     {
       "text": "menu-item-projects",
-      "href": "/"
+      "href": "/projects"
     },
     {
       "text": "menu-item-news",
-      "href": "/"
+      "href": "/news"
     },
     {
       "text": "menu-item-trailer",
@@ -26,7 +26,7 @@
     },
     {
       "text": "menu-item-contacts",
-      "href": "/"
+      "href": "/contacts"
     }
   ]
 }

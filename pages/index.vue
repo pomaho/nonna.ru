@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home-page">
         <SectionsIntro
             v-for="(number, index) in sections"
             :key="index"

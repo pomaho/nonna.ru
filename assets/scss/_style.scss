@@ -36,7 +36,6 @@
 
     p {
         margin: 40px auto 0;
-        width: 600px;
         display: block;
         font-weight: 100;
     }
@@ -47,6 +46,14 @@
 
     .header-logo-and-menu {
         top: 95px;
+    }
+}
+
+.home-page {
+    .intro-section {
+        p {
+            width: 600px;
+        }
     }
 }
 
@@ -68,6 +75,11 @@
             .nav-link {
                 color: $menu-item-color;
                 font-weight: 400;
+
+                &:hover,
+                &.router-link-active {
+                    color: $menu-active-item-color;
+                }
             }
         }
     }
