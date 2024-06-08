@@ -7,6 +7,7 @@
             :background="`collection/section-1-bg.jpeg`"
             :with-header="true"
         />
+        <SectionsListOfContent />
     </div>
 </template>
 
