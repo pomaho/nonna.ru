@@ -7,6 +7,8 @@
             :background="`contacts/section-1-bg.jpeg`"
             :with-header="true"
         />
+        <SectionsContacts />
+        <SectionsContactsMap />
     </div>
 </template>
 

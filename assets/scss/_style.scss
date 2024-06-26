@@ -366,6 +366,20 @@ h1, h2 {
         color: black;
     }
 
+    .contacts-container{
+        .heading {
+            font-size: 32px;
+        }
+
+        &:not(.first),
+        .text {
+            margin-top: 40px;
+        }
+
+    }
+
+
+
     .text {
         color: $text-description-color;
         font-size: 20px;
@@ -378,4 +392,8 @@ h1, h2 {
         padding-left: 100px;
         flex-direction: column;
     }
+}
+
+.contacts-map {
+    padding: 80px 0;
 }

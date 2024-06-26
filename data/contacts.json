@@ -10,15 +10,18 @@
   "addresses": [
     {
       "city": "contact-city-1",
-      "address": "contact-address-1"
+      "address": "contact-address-1",
+      "workTime": "contact-work-time-1"
     },
     {
       "city": "contact-city-2",
-      "address": "contact-address-2"
+      "address": "contact-address-2",
+      "workTime": "contact-work-time-2"
     },
     {
       "city": "contact-city-3",
-      "address": "contact-address-3"
+      "address": "contact-address-3",
+      "workTime": "contact-work-time-3"
     }
   ]
 }
