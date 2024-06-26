@@ -333,3 +333,15 @@ h1, h2 {
     align-items: center;
     justify-content: center;
 }
+
+.language {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .language-link {
+        text-decoration: none;
+        color: white;
+        font-family: 'Inter', sans-serif;
+    }
+}
