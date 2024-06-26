@@ -2,7 +2,7 @@
     <section :class="'list-of-content-section ' + cssClass">
         <div class="container">
             <p>{{ description }}</p>
-            <WidgetsCategoryLinks
+            <WidgetsCategoryLinks v-if="showCategories && content.categories"
                 :categories="content.categories"
                 :categoriesType="content.categoriesType"
                 :change-category="changeCategory"
@@ -23,6 +23,10 @@ const props = defineProps({
     cssClass: {
         type: String,
         default: '',
+    },
+    showCategories: {
+        type: Boolean,
+        default: true,
     }
 });
 
