@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "image": "/images/bespoke/bespoke-1.png",
+      "description": {
+        "heading": "bespoke-1-heading",
+        "text": "bespoke-1-text"
+      }
+    },
+    {
+      "image": "/images/bespoke/bespoke-2.png",
+      "description": {
+        "heading": "bespoke-2-heading",
+        "text": "bespoke-2-text"
+      }
+    },
+    {
+      "image": "/images/bespoke/bespoke-3.png",
+      "description": {
+        "heading": "bespoke-3-heading",
+        "text": "bespoke-3-text"
+      }
+    },
+    {
+      "image": "/images/bespoke/bespoke-4.png",
+      "description": {
+        "heading": "bespoke-4-heading",
+        "text": "bespoke-4-text"
+      }
+    }
+  ]
+}
