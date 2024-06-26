@@ -1,7 +1,7 @@
 <template>
     <div>
         <nuxt-link :to="'/'" class="nav-link" aria-current="page">
-            <img src="@/assets/images/nonna-logo.png" alt="" />
+            <img src="@/assets/images/nonna-new.png" alt="" />
         </nuxt-link>
     </div>
 </template>
