@@ -16,7 +16,9 @@
                         v-for="(contact, index) in contacts.addresses" :key="index">
                         <h3 class="heading">{{$t(contact.city)}}</h3>
                         <h3 class="heading">{{$t(contact.address)}}</h3>
-                        <p class="text">{{$t(contact.workTime)}}</p>
+                        <h4 class="sub-heading">{{$t(contact.additionalAddress)}}</h4>
+                        <p class="text" v-html="$t(contact.workTime).replaceAll('--br--', '<br/>')"></p>
+                        <WidgetsPhoneLink :phone="contact.phone"/>
                     </div>
                 </div>
             </div>

@@ -348,6 +348,8 @@ h1, h2 {
 
 .two-columns {
     padding: 100px 0;
+    color: black;
+
     &.rtl .row {
         flex-flow: row-reverse;
 
@@ -370,6 +372,18 @@ h1, h2 {
         .heading {
             font-size: 32px;
         }
+
+        .sub-heading {
+            font-size: 20px;
+            color: black;
+        }
+
+        .phone-link {
+            color: black;
+            font-size: 20px;
+            font-weight: 400;
+        }
+
 
         &:not(.first),
         .text {
@@ -395,5 +409,11 @@ h1, h2 {
 }
 
 .contacts-map {
-    padding: 80px 0;
+    padding: 0 0 80px 0;
+
+    .iframe-map {
+        width: 100%;
+        height: 580px;
+    }
 }
+
