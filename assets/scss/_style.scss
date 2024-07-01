@@ -417,3 +417,59 @@ h1, h2 {
     }
 }
 
+.trailer-page {
+    .video-background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    .two-images {
+        min-height: 100vh;
+        padding: 80px 0;
+
+        &.first,
+        &.second {
+            .column-1,
+            .column-2 {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                height: 100%;
+                .main-image {
+                    max-width: 100%;
+                }
+            }
+        }
+        &.second {
+            .column-1,
+            .column-2 {
+                justify-content: flex-start;
+            }
+        }
+    }
+    .trailer-desc {
+        padding: 80px 0;
+        .column-1 {
+            .main-image {
+                width: 100%;
+            }
+        }
+
+        .column-2 {
+            height: 100%;
+            align-items: center;
+            display: flex;
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+
+        .trailer-desc-text {
+            color: black;
+            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+}
