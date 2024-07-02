@@ -38,32 +38,32 @@ const categories = [
 
 const categoryContent = [
     {
-        image: '/images/categroies/parket/image-1.jpeg',
+        image: '/images/categories/parket/image-1.jpeg',
         description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
         categoryId: categories[0].id,
     },
     {
-        image: '/images/categroies/parket/image-1.jpeg',
+        image: '/images/categories/parket/image-1.jpeg',
         description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
         categoryId: categories[0].id,
     },
     {
-        image: '/images/categroies/parket/image-1.jpeg',
+        image: '/images/categories/parket/image-1.jpeg',
         description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
         categoryId: categories[2].id,
     },
     {
-        image: '/images/categroies/parket/image-1.jpeg',
+        image: '/images/categories/parket/image-1.jpeg',
         description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
         categoryId: categories[3].id,
     },
     {
-        image: '/images/categroies/parket/image-1.jpeg',
+        image: '/images/categories/parket/image-1.jpeg',
         description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
         categoryId: categories[3].id,
     },
     {
-        image: '/images/categroies/parket/image-1.jpeg',
+        image: '/images/categories/parket/image-1.jpeg',
         description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
         categoryId: categories[1].id,
     },

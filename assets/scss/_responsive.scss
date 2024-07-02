@@ -179,6 +179,47 @@
             padding-top: 40px;
         }
     }
+
+
+    .parquet-page {
+        .parquet-intro-section {
+            height: 500px;
+
+            .section-content {
+                margin-top: 250px;
+            }
+        }
+        .two-columns {
+            padding: 60px 0;
+
+            .column-2 {
+                h3 {
+                    font-size: 32px;
+                }
+            }
+        }
+
+        .specification-section {
+            padding: 60px 0;
+
+            .specification-heading {
+                font-size: 32px;
+            }
+
+            .table {
+                td {
+                    .specification-name,
+                    .specification-value {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+        .parquet-projects {
+            padding: 60px 0;
+        }
+    }
 }
 
 @include media-breakpoint-down(sm) {
@@ -298,6 +339,47 @@
 
         .text {
             font-size: 16px;
+        }
+    }
+
+    .parquet-page {
+        .parquet-intro-section {
+            height: 500px;
+
+            .section-content {
+                margin-top: 250px;
+            }
+        }
+        .two-columns {
+            padding: 60px 0;
+
+            .column-2 {
+                h3 {
+                    font-size: 32px;
+                }
+            }
+        }
+
+        .specification-section {
+            padding: 60px 0;
+
+            .specification-heading {
+                font-size: 32px;
+            }
+
+            .table {
+                td {
+                    padding: 20px 10px;
+                    .specification-name,
+                    .specification-value {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        .parquet-projects {
+            padding: 60px 0;
         }
     }
 }

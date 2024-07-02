@@ -96,5 +96,15 @@
 
   "policy-conf": "Политика конфиденциальности",
   "footer-text": "Мы - это команда лучших специалистов! --br-- Вы - это наши любимые партнеры и клиенты! --br-- Спасибо, что выбираете нас.",
-  "show-all-button": "Смотреть все"
+  "show-all-button": "Смотреть все",
+
+  "parquet-intro-heading": "Коллекция паркета Nonna",
+  "parquet-intro-text": "Паркет NONNA изготавливается на австрийском оборудовании по европейским технологиям из древесины ценных пород. ",
+  "parquet-back-to-collection-button": "Вернуться к коллекции",
+  "parquet-specifications-heading": "Характеристики",
+  "parquet-country": "Страна производитель",
+  "parquet-wood-type": "Дерево",
+  "parquet-color": "Цвет",
+  "parquet-pattern": "Формат доски",
+  "parquet-used-in-projects": "В проекте используется"
 }
