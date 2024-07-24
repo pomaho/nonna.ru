@@ -7,7 +7,10 @@
             :background="`collection/section-1-bg.jpeg`"
             :with-header="true"
         />
-        <SectionsListOfContent
+        <div v-if="pending">
+            <p class="color: black;">Loading....</p>
+        </div>
+        <SectionsListOfContent v-else
             :description="$t('collection-list-content-description')"
             :content="content"
         />
@@ -15,6 +18,35 @@
 </template>
 
 <script setup>
+const {locale} = useI18n();
+const {
+    pending,
+    data: parquets
+} = useFetch(`${useRuntimeConfig().public.apiBase}/parquets?locale=${locale.value}&populate=*`, {
+    lazy: false,
+    server: false,
+    headers: {
+        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
+    },
+    transform: (parquets) => {
+        const data = parquets.data.map((parquet) => {
+            const attributesKeys = Object.keys(parquet);
+            const _parquet = {};
+            attributesKeys.forEach((attributeKey) => {
+                const value = parquet[attributeKey];
+                if (attributeKey === 'image') {
+                    _parquet.image = useRuntimeConfig().public.apiBaseFiles + value.url;
+                } else if (typeof value === 'object') {
+                    _parquet[attributeKey] = value.name;
+                } else if (value) {
+                    _parquet[attributeKey] = value;
+                }
+            });
+            return _parquet;
+        });
+        return data;
+    }
+});
 
 const categories = [
     {
@@ -35,45 +67,11 @@ const categories = [
     },
 ];
 
-
-const categoryContent = [
-    {
-        image: '/images/categories/parket/image-1.jpeg',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[0].id,
-    },
-    {
-        image: '/images/categories/parket/image-1.jpeg',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[0].id,
-    },
-    {
-        image: '/images/categories/parket/image-1.jpeg',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[2].id,
-    },
-    {
-        image: '/images/categories/parket/image-1.jpeg',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[3].id,
-    },
-    {
-        image: '/images/categories/parket/image-1.jpeg',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[3].id,
-    },
-    {
-        image: '/images/categories/parket/image-1.jpeg',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[1].id,
-    },
-];
-
-const content = {
+const content = ref({
     categories,
-    categoryContent,
+    categoryContent: parquets,
     categoriesType: 'collection'
-}
+});
 
 </script>
 

@@ -28,5 +28,13 @@ export default defineNuxtConfig({
             },
         ],
     },
-    devtools: {enabled: true}
+    devtools: {enabled: true},
+    runtimeConfig: {
+        public: {
+            apiBase: process.env.BASE_API_URL,
+            apiBaseFiles: process.env.BASE_API_FILES_URL,
+            url: process.env.SITE_URL,
+            bearerToken: process.env.API_BEARER_TOKEN,
+        }
+    },
 })
