@@ -10,6 +10,7 @@
             <WidgetsCategoryContent
                 :categoryContent="filteredCategoryContent"
                 :contentType="contentType"
+                :categoryProp="categoryProp"
             />
         </div>
     </section>
@@ -23,6 +24,10 @@ const props = defineProps({
         default: '',
     },
     contentType: {
+        type: String,
+        default: '',
+    },
+    categoryProp: {
         type: String,
         default: '',
     },
@@ -42,7 +47,7 @@ const filteredCategoryContent = computed(() => {
     if (currentCategory.value === 'all') {
         return props.content.categoryContent;
     }
-    return props.content.categoryContent.filter((content) => content.wood === currentCategory.value);
+    return props.content.categoryContent.filter((content) => content[props.categoryProp] === currentCategory.value);
 });
 
 const changeCategory = ($event, category) => {

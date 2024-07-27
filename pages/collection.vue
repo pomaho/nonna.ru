@@ -14,6 +14,7 @@
             :description="$t('collection-list-content-description')"
             :content="content"
             :content-type="'parquet'"
+            :category-prop="'wood'"
         />
     </div>
 </template>

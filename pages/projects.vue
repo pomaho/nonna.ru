@@ -10,69 +10,66 @@
         <SectionsListOfContent
             :description="$t('projects-list-content-description')"
             :content="content"
+            :content-type="'project'"
+            :category-prop="'type_of_property'"
         />
     </div>
 </template>
 
 <script setup>
-const categories = [
-    {
-        id: 1,
-        name: 'Жилая квартира',
+
+const {locale} = useI18n();
+const {
+    pending,
+    data: projects
+} = useFetch(`${useRuntimeConfig().public.apiBase}/projects?locale=${locale.value}&populate=*`, {
+    lazy: false,
+    server: false,
+    headers: {
+        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
     },
-    {
-        id: 2,
-        name: 'Дом',
+    transform: (parquets) => {
+        const data = parquets.data.map((parquet) => {
+            const attributesKeys = Object.keys(parquet);
+            const _parquet = {};
+            attributesKeys.forEach((attributeKey) => {
+                const value = parquet[attributeKey];
+                if (value) {
+                    if (attributeKey === 'image') {
+                        _parquet.image = useRuntimeConfig().public.apiBaseFiles + value.url;
+                    } else if (typeof value === 'object') {
+                        _parquet[attributeKey] = value.name;
+                    } else {
+                        _parquet[attributeKey] = value;
+                    }
+                }
+            });
+            return _parquet;
+        });
+        return data;
+    }
+});
+
+const {
+    pendingCats,
+    data: categories
+} = useFetch(`${useRuntimeConfig().public.apiBase}/type-of-properties?locale=${locale.value}`, {
+    lazy: false,
+    server: false,
+    headers: {
+        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
     },
-    {
-        id: 3,
-        name: 'Коммерческая',
-    },
-    {
-        id: 4,
-        name: 'Horeca',
-    },
-];
+    transform: (categories) => {
+        return categories.data;
+    }
+});
 
 
-const categoryContent = [
-    {
-        image: '/images/projects/project1.png',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[0].id,
-    },
-    {
-        image: '/images/projects/project1.png',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[0].id,
-    },
-    {
-        image: '/images/projects/project1.png',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[2].id,
-    },
-    {
-        image: '/images/projects/project1.png',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[3].id,
-    },
-    {
-        image: '/images/projects/project1.png',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[3].id,
-    },
-    {
-        image: '/images/projects/project1.png',
-        description: 'Инженерная доска NONNA Дуб "23/1" экстра-рустик браш лак 16*185*1600-2400',
-        categoryId: categories[1].id,
-    },
-];
-
-const content = {
+const content = ref({
     categories,
-    categoryContent,
+    categoryContent: projects,
     categoriesType: 'collection'
-}
+});
 
 </script>
 

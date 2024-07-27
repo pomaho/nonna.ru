@@ -8,7 +8,7 @@
         />
         <SectionsListOfContent
             :showCategories="false"
-            :description="$t('news-list-content-description')"
+            :description="$t('project-list-content-description')"
             :content="content"
             :content-type="'newses'"
         />

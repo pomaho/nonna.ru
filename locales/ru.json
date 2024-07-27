@@ -106,5 +106,8 @@
   "parquet-wood-type": "Дерево",
   "parquet-color": "Цвет",
   "parquet-pattern": "Формат доски",
-  "parquet-used-in-projects": "В проекте используется"
+  "parquet-used-in-projects": "Паркет использовался в проектах:",
+
+  "project-parquet-usage": "В проекте используется доска:",
+  "project-author": "Автор проекта:"
 }
