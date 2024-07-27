@@ -13,6 +13,7 @@
         <SectionsListOfContent v-else
             :description="$t('collection-list-content-description')"
             :content="content"
+            :content-type="'parquet'"
         />
     </div>
 </template>

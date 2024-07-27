@@ -566,3 +566,25 @@ h1, h2 {
     color: black;
     font-size: 76px;
 }
+
+.news-page {
+    .news-intro-section{
+        &.intro-section {
+            height: 550px;
+        }
+
+        .section-content {
+            h1 {
+                color: black;
+            }
+        }
+    }
+
+    .two-columns {
+        padding: 0 0 80px;
+
+        .column-2 {
+            justify-content: flex-start;
+        }
+    }
+}

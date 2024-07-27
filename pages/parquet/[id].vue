@@ -24,7 +24,7 @@
                         </div>
                         <div class="column-2 col-lg-8 col-12">
                             <h3 class="heading">{{ parquet.name }}</h3>
-                            <p class="text">{{ parquet.description }}</p>
+                            <p class="text" v-html="parquet.description"></p>
                             <nuxt-link :to="'/collection'" class="nonna-btn black-text-btn" aria-current="page">
                                 {{ $t('parquet-back-to-collection-button') }}
                             </nuxt-link>

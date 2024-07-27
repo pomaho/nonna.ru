@@ -7,7 +7,10 @@
                 :change-category="changeCategory"
                 :current-category="currentCategory"
             />
-            <WidgetsCategoryContent :categoryContent="filteredCategoryContent" />
+            <WidgetsCategoryContent
+                :categoryContent="filteredCategoryContent"
+                :contentType="contentType"
+            />
         </div>
     </section>
 </template>
@@ -16,6 +19,10 @@
 const props = defineProps({
     content: Object,
     description: {
+        type: String,
+        default: '',
+    },
+    contentType: {
         type: String,
         default: '',
     },
