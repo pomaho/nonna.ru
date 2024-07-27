@@ -4,7 +4,6 @@
             <p>{{ description }}</p>
             <WidgetsCategoryLinks v-if="showCategories && content.categories"
                 :categories="content.categories"
-                :categoriesType="content.categoriesType"
                 :change-category="changeCategory"
                 :current-category="currentCategory"
             />
@@ -36,7 +35,7 @@ const filteredCategoryContent = computed(() => {
     if (currentCategory.value === 'all') {
         return props.content.categoryContent;
     }
-    return props.content.categoryContent.filter((content) => content.categoryId === parseFloat(currentCategory.value));
+    return props.content.categoryContent.filter((content) => content.wood === currentCategory.value);
 });
 
 const changeCategory = ($event, category) => {

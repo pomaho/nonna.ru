@@ -7,7 +7,7 @@
             :background="`collection/section-1-bg.jpeg`"
             :with-header="true"
         />
-        <div v-if="pending">
+        <div v-if="pending || pendingCats">
             <p class="color: black;">Loading....</p>
         </div>
         <SectionsListOfContent v-else
@@ -34,12 +34,14 @@ const {
             const _parquet = {};
             attributesKeys.forEach((attributeKey) => {
                 const value = parquet[attributeKey];
-                if (attributeKey === 'image') {
-                    _parquet.image = useRuntimeConfig().public.apiBaseFiles + value.url;
-                } else if (typeof value === 'object') {
-                    _parquet[attributeKey] = value.name;
-                } else if (value) {
-                    _parquet[attributeKey] = value;
+                if (value) {
+                    if (attributeKey === 'image') {
+                        _parquet.image = useRuntimeConfig().public.apiBaseFiles + value.url;
+                    } else if (typeof value === 'object') {
+                        _parquet[attributeKey] = value.name;
+                    } else {
+                        _parquet[attributeKey] = value;
+                    }
                 }
             });
             return _parquet;
@@ -48,29 +50,23 @@ const {
     }
 });
 
-const categories = [
-    {
-        id: 1,
-        name: 'Дуб',
+const {
+    pendingCats,
+    data: categories
+} = useFetch(`${useRuntimeConfig().public.apiBase}/woods?locale=${locale.value}`, {
+    lazy: false,
+    server: false,
+    headers: {
+        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
     },
-    {
-        id: 2,
-        name: 'Дуб термо',
-    },
-    {
-        id: 3,
-        name: 'Ясень',
-    },
-    {
-        id: 4,
-        name: 'Ясень термо',
-    },
-];
+    transform: (categories) => {
+        return categories.data;
+    }
+});
 
 const content = ref({
     categories,
     categoryContent: parquets,
-    categoriesType: 'collection'
 });
 
 </script>

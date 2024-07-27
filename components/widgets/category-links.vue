@@ -19,9 +19,9 @@
                         <span
                             class="category-link nav-link"
                             :class="{
-                                active: currentCategory === category.id.toString()
+                                active: currentCategory === category.name.toString()
                             }"
-                            @click="changeCategory($event, category.id)"
+                            @click="changeCategory($event, category.name)"
                         >
                             {{ category.name }}
                         </span>
@@ -35,7 +35,6 @@
 <script setup>
 defineProps({
     categories: Array,
-    categoriesType: String,
     changeCategory: Function,
     currentCategory: String,
 })
