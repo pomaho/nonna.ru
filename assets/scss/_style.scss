@@ -648,3 +648,51 @@ h1, h2 {
         font-weight: 400;
     }
 }
+
+.sidenav-menu {
+    position: fixed;
+    top: 0;
+    left: 10000px;
+    width: 100%;
+    height: 100%;
+    background: #303030;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    opacity: 0;
+    transition: opacity .5s;
+
+    padding-left: 40px;
+
+    &.show {
+        opacity: 1;
+        left: 0;
+        transition: opacity .5s;
+    }
+
+    .navbar-nav {
+        text-align: left;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+
+    .close-mobile-menu {
+        position: absolute;
+        right: 40px;
+        top: 85px;
+        cursor: pointer;
+    }
+}
+
+.hamburger-menu-icon {
+    cursor: pointer;
+}
+
+.show-mobile-nav-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}

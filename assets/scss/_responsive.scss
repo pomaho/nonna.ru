@@ -220,6 +220,20 @@
             padding: 60px 0;
         }
     }
+
+    .show-mobile-nav-container {
+        display: flex;
+
+        .language {
+            display: block;
+            text-align: left;
+            margin-top: 30px;
+        }
+    }
+
+    .language {
+        display: none;
+    }
 }
 
 @include media-breakpoint-down(sm) {
@@ -228,7 +242,6 @@
             top: 60px;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
 
             .navbar {
                 .navbar-toggler {
