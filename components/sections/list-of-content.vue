@@ -47,7 +47,7 @@ const filteredCategoryContent = computed(() => {
     if (currentCategory.value === 'all') {
         return props.content.categoryContent;
     }
-    return props.content.categoryContent.filter((content) => content[props.categoryProp].name === currentCategory.value);
+    return props.content.categoryContent.filter((content) => content[props.categoryProp]?.name === currentCategory.value);
 });
 
 const changeCategory = ($event, category) => {

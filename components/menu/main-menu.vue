@@ -7,7 +7,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item" v-for="(menuItem, index) in menu.items" :key="index">
-                        <nuxt-link :to="menuItem.href" class="nav-link" aria-current="page">{{ $t(menuItem.text) }}</nuxt-link>
+                        <nuxt-link :to="localePath(menuItem.href)" class="nav-link" aria-current="page">{{ $t(menuItem.text) }}</nuxt-link>
                     </li>
                 </ul>
             </div>

@@ -57,7 +57,7 @@ const project = ref(projects[locale.value] || projectDefault.value);
             <section :class="'list-of-content-section'">
                 <div class="container">
                     <p>{{ $t('project-parquet-usage') }}
-                        <nuxt-link class="parquet-link" :to="`/parquet/${project.parquet?.id}`">
+                        <nuxt-link class="parquet-link" :to="localePath(`/parquet/${project.parquet?.id}`)">
                             {{ project.parquet?.name }}
                         </nuxt-link>
                     </p>

@@ -12,7 +12,7 @@
                 <div class="section-content">
                     <h1 v-html="title.replaceAll('--br--', '<br/>')"></h1>
                     <p v-html="text.replaceAll('--br--', '<br/>')"></p>
-                    <nuxt-link v-if="button" :to="'/'" class="nonna-btn" aria-current="page">{{ button }}</nuxt-link>
+                    <nuxt-link v-if="button" :to="localePath('/')" class="nonna-btn" aria-current="page">{{ button }}</nuxt-link>
                 </div>
             </div>
         </div>

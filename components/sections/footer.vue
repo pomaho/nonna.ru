@@ -12,7 +12,7 @@
 
                     <div class="footer-social">
                         <WidgetsSocialIcons />
-                        <nuxt-link :to="'/'" class="conf-policy nav-link" aria-current="page">{{ $t('policy-conf') }}</nuxt-link>
+                        <nuxt-link :to="localePath('/')" class="conf-policy nav-link" aria-current="page">{{ $t('policy-conf') }}</nuxt-link>
                     </div>
                 </div>
                 <div class="footer-column col-xl-6 col-lg-6 col-12">
