@@ -1,6 +1,35 @@
+<script setup>
+import {useRoute} from 'vue-router';
+
+const route = useRoute();
+const {locale} = useI18n();
+const newsId = ref(parseFloat(route.params.id) || null);
+const fetchParams = {
+    server: true,
+    headers: {
+        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
+    },
+    transform: (parquet) => parquet.data
+};
+
+const newsesApiUrl = `${useRuntimeConfig().public.apiBase}/site-news-many/`;
+const {data: newsDefault} = await useFetch(`${newsesApiUrl}${newsId.value}?populate=*`, fetchParams);
+
+const localizedId = newsDefault.value?.localizations && newsDefault.value?.localizations.length ? newsDefault.value.localizations[0].id : newsId.value;
+const {data: newsLocalized} = await useFetch(`${newsesApiUrl}${localizedId}?populate=*`, fetchParams);
+
+const newses = {
+    [newsDefault.value?.locale]: newsDefault.value,
+    [newsLocalized.value?.locale]: newsLocalized.value,
+};
+
+const news = ref(newses[locale.value] || newsDefault.value);
+
+</script>
+
 <template>
     <div class="news-page">
-        <div v-if="pending">
+        <div v-if="!news">
             <p class="pending-message">Loading...</p>
         </div>
         <div v-else>
@@ -18,7 +47,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="column-1 col-lg-4 col-12">
-                            <img class="main-image" :src="news.image" alt="">
+                            <img class="main-image" :src="useRuntimeConfig().public.apiBaseFiles + news.image?.url" alt="">
                         </div>
                         <div class="column-2 col-lg-8 col-12">
                             <p class="text" v-html="news.description"></p>
@@ -29,46 +58,6 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import {useRoute} from 'vue-router';
-
-const route = useRoute();
-debugger;
-const {locale} = useI18n();
-const newsId = ref(parseFloat(route.params.id) || null);
-
-const {
-    pending,
-    data: news
-} = useFetch(`${useRuntimeConfig().public.apiBase}/site-news-many/${newsId.value}?locale=${locale.value}&populate=*`, {
-    lazy: false,
-    server: false,
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
-    transform: (news) => {
-        const data = news.data;
-        const attributesKeys = Object.keys(data);
-        const _news = {};
-        attributesKeys.forEach((attributeKey) => {
-            const value = data[attributeKey];
-            if (value) {
-                if (attributeKey === 'image') {
-                    _news.image = useRuntimeConfig().public.apiBaseFiles + value.url;
-                } else if (typeof value === 'object') {
-                    _news[attributeKey] = value.name;
-                } else {
-                    _news[attributeKey] = value;
-                }
-            }
-        });
-        debugger;
-        return _news;
-    }
-});
-
-</script>
 
 <style scoped>
 

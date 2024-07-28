@@ -1,3 +1,31 @@
+<script setup>
+import {useRoute} from 'vue-router';
+
+const route = useRoute();
+const {locale} = useI18n();
+const parquetId = ref(route.params.id || null);
+const fetchParams = {
+    server: true,
+    headers: {
+        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
+    },
+    transform: (parquet) => parquet.data
+};
+
+const parquetsApiUrl = `${useRuntimeConfig().public.apiBase}/parquets/`;
+const {data: parquetDefault} = await useFetch(`${parquetsApiUrl}${parquetId.value}?populate=*`, fetchParams);
+
+const localizedId = parquetDefault.value?.localizations && parquetDefault.value?.localizations.length ? parquetDefault.value.localizations[0].id : parquetId.value;
+const {data: parquetLocalized} = await useFetch(`${parquetsApiUrl}${localizedId}?populate=*`, fetchParams);
+
+const parquets = {
+    [parquetDefault.value?.locale]: parquetDefault.value,
+    [parquetLocalized.value?.locale]: parquetLocalized.value,
+}
+
+const parquet = ref(parquets[locale.value] || parquetDefault.value);
+</script>
+
 <template>
     <div class="parquet-page">
         <section class="parquet-intro-section intro-section">
@@ -11,7 +39,7 @@
                 </div>
             </div>
         </section>
-        <div v-if="pending">
+        <div v-if="!parquet">
             <p class="pending-message">Loading...</p>
         </div>
         <div v-else>
@@ -19,12 +47,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="column-1 col-lg-4 col-12">
-                            <p class="wood-type">{{ parquet.wood }}</p>
-                            <img class="main-image" :src="parquet.image" alt="">
+                            <p class="wood-type">{{ parquet.wood?.name }}</p>
+                            <img class="main-image" :src="useRuntimeConfig().public.apiBaseFiles + parquet.image.url" alt="">
                         </div>
                         <div class="column-2 col-lg-8 col-12">
                             <h3 class="heading">{{ parquet.name }}</h3>
-                            <p class="text" v-html="parquet.description"></p>
+                            <div class="text" v-html="parquet.description"></div>
                             <nuxt-link :to="'/collection'" class="nonna-btn black-text-btn" aria-current="page">
                                 {{ $t('parquet-back-to-collection-button') }}
                             </nuxt-link>
@@ -39,19 +67,19 @@
                         <tbody>
                         <tr>
                             <td><h4 class="specification-name">{{ $t('parquet-country') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.country }}</p></td>
+                            <td><p class="specification-value">{{ parquet.country?.name }}</p></td>
                         </tr>
                         <tr>
                             <td><h4 class="specification-name">{{ $t('parquet-wood-type') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.wood }}</p></td>
+                            <td><p class="specification-value">{{ parquet.wood?.name }}</p></td>
                         </tr>
                         <tr>
                             <td><h4 class="specification-name">{{ $t('parquet-color') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.color }}</p></td>
+                            <td><p class="specification-value">{{ parquet.color?.name }}</p></td>
                         </tr>
                         <tr>
                             <td><h4 class="specification-name">{{ $t('parquet-pattern') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.type_of_picture }}</p></td>
+                            <td><p class="specification-value">{{ parquet.type_of_picture?.name }}</p></td>
                         </tr>
                         </tbody>
                     </table>
@@ -71,47 +99,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import {useRoute} from 'vue-router';
-
-const route = useRoute();
-debugger;
-const {locale} = useI18n();
-const parquetId = ref(parseFloat(route.params.id) || null);
-
-const {
-    pending,
-    data: parquet
-} = useFetch(`${useRuntimeConfig().public.apiBase}/parquets/${parquetId.value}?locale=${locale.value}&populate=*`, {
-    lazy: false,
-    server: false,
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
-    transform: (parquet) => {
-        const data = parquet.data;
-        const attributesKeys = Object.keys(data);
-        const _parquet = {};
-        attributesKeys.forEach((attributeKey) => {
-            const value = data[attributeKey];
-            if (value) {
-                if (attributeKey === 'image') {
-                    _parquet.image = useRuntimeConfig().public.apiBaseFiles + value.url;
-                } else if (typeof value === 'object') {
-                    _parquet[attributeKey] = value.name;
-                } else {
-                    _parquet[attributeKey] = value;
-                }
-            }
-        });
-        debugger;
-        return _parquet;
-    }
-});
-
-</script>
-
-<style scoped>
-
-</style>

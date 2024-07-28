@@ -348,7 +348,7 @@ h1, h2 {
 
     .language-link {
         text-decoration: none;
-        color: white;
+        color: $text-description-color;
         font-family: 'Inter', sans-serif;
     }
 }
@@ -641,5 +641,10 @@ h1, h2 {
     .instagram-link {
         text-decoration: none;
         color: $text-description-color;
+    }
+
+    .project-static-desc {
+        color: $text-description-color;
+        font-weight: 400;
     }
 }
