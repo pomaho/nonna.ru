@@ -1,3 +1,16 @@
+<script setup>
+const {locale} = useI18n();
+const fetchParams = {
+    headers: {
+        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
+    },
+    transform: (response) => response.data
+};
+
+const {data: contacts} = await useFetch(`${useRuntimeConfig().public.apiBase}/contacts?locale=${locale.value}&populate=*`, fetchParams);
+
+</script>
+
 <template>
     <section
         class="two-columns"
@@ -13,11 +26,10 @@
                         :class="{
                             first: index === 0,
                         }"
-                        v-for="(contact, index) in contacts.addresses" :key="index">
-                        <h3 class="heading">{{$t(contact.city)}}</h3>
+                        v-for="(contact, index) in contacts" :key="index">
                         <h3 class="heading">{{$t(contact.address)}}</h3>
-                        <h4 class="sub-heading">{{$t(contact.additionalAddress)}}</h4>
-                        <p class="text" v-html="$t(contact.workTime).replaceAll('--br--', '<br/>')"></p>
+                        <h4 class="sub-heading">{{$t(contact.sub_address)}}</h4>
+                        <p class="text" v-html="$t(contact.work_time).replaceAll('--br--', '<br/>')"></p>
                         <WidgetsPhoneLink :phone="contact.phone"/>
                     </div>
                 </div>
@@ -25,7 +37,3 @@
         </div>
     </section>
 </template>
-
-<script setup>
-import contacts from '~/data/contacts.json';
-</script>
