@@ -24,7 +24,6 @@ const content = ref({
         <SectionsIntro
             :title="$t(`collection-intro-section-title`)"
             :text="$t(`collection-intro-section-text`)"
-            :button="$t(`collection-intro-section-button`)"
             :background="`collection/section-1-bg.jpeg`"
             :with-header="true"
         />

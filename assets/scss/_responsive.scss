@@ -87,7 +87,7 @@
             }
         }
         p {
-            width: auto;
+            width: auto !important;
         }
     }
 
@@ -144,12 +144,25 @@
         .category-content {
             width: 464px;
             height: 464px;
+
+        }
+
+        .hover-box {
+            .content-box {
+                display: none;
+            }
+            .responsive-name {
+                display: block;
+            }
         }
     }
 
     .two-columns {
         padding: 80px 0;
 
+        .project-page &:not(:last-of-type) {
+            padding: 0;
+        }
         &.rtl .row {
             flex-flow: wrap;
 

@@ -8,6 +8,11 @@
                         <p>{{ content.name }}</p>
                     </div>
                 </nuxt-link>
+                <div class="responsive-name flex-centered">
+                    <nuxt-link :to="localePath(`/${contentType}/${content.id}`)">
+                        <p>{{ content.name }}</p>
+                    </nuxt-link>
+                </div>
             </div>
         </div>
     </div>

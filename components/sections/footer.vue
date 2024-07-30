@@ -4,7 +4,7 @@
             <h2>Контакты</h2>
             <div class="row">
                 <div class="footer-column col-xl-6 col-lg-6 col-12">
-                    <img class="footer-logo" src="/images/eurohome_logo.png" alt="Eurohome logo">
+                    <img class="footer-logo" src="/images/nonna-new.png" alt="Nonna footer logo">
                     <p
                         class="footer-text"
                         v-html="$t('footer-text').replaceAll('--br--', '<br/>')"
