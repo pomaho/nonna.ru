@@ -368,6 +368,14 @@
         }
     }
 
+    .contacts-page {
+        .contacts-map {
+            .container {
+                max-width: none;
+            }
+        }
+    }
+
     .parquet-page {
         .parquet-intro-section {
             height: 500px;
