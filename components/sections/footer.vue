@@ -1,7 +1,7 @@
 <template>
     <section class="footer">
         <div class="container">
-            <h2>Контакты</h2>
+            <h2>{{$t('menu-item-contacts')}}</h2>
             <div class="row">
                 <div class="footer-column col-xl-6 col-lg-6 col-12">
                     <img class="footer-logo" src="/images/nonna-new.png" alt="Nonna footer logo">

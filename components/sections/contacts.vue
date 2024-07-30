@@ -27,9 +27,9 @@ const {data: contacts} = await useFetch(`${useRuntimeConfig().public.apiBase}/co
                             first: index === 0,
                         }"
                         v-for="(contact, index) in contacts" :key="index">
-                        <h3 class="heading">{{$t(contact.address)}}</h3>
-                        <h4 class="sub-heading">{{$t(contact.sub_address)}}</h4>
-                        <p class="text" v-html="$t(contact.work_time).replaceAll('--br--', '<br/>')"></p>
+                        <h3 class="heading">{{contact.address}}</h3>
+                        <h4 class="sub-heading">{{contact.sub_address}}</h4>
+                        <p class="text" v-html="contact.work_time"></p>
                         <WidgetsPhoneLink :phone="contact.phone"/>
                     </div>
                 </div>
