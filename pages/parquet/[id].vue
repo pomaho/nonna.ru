@@ -25,6 +25,15 @@ const parquets = {
 
 const parquet = ref(parquets[locale.value] || parquetDefault.value);
 
+const {data: projects} = await useFetch(`${useRuntimeConfig().public.apiBase}/projects?locale=${locale.value}&populate=*`, fetchParams);
+
+const projectsWithParquet = projects.value.filter((project) => project.parquet.id === parquet.value.id);
+
+const content = ref({
+    categoryContent: projectsWithParquet,
+    categoriesType: 'collection'
+});
+
 useHead({
     meta: [
         {name: 'description', content: parquet.value?.name},
@@ -96,17 +105,11 @@ useHead({
                     </table>
                 </div>
             </section>
-            <section class="parquet-projects">
-                <div class="container">
-                    <p class="parquet-used-projects">{{ $t('parquet-used-in-projects') }} {{ parquet.name }}</p>
-                    <div class="row gy-4">
-                        <div class="col-xl-4 col-lg-6 col-12" v-for="(image, index) in parquet.projectImages"
-                             :key="index">
-                            <img class="parquet-project-image" :src="image"/>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <SectionsListOfContent
+                :description="`${$t('parquet-used-in-projects')} ${parquet.name}`"
+                :content="content"
+                :content-type="'project'"
+            />
         </div>
     </div>
 </template>
