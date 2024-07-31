@@ -55,7 +55,20 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
+
+const description = 'Nonna - лучший паркет! Трейлер';
+useHead({
+    titleTemplate: `%s - Трейлер`,
+    meta: [
+        {name: 'description', content: description },
+        {name: 'description', content: description},
+        {name: 'og:description', content: description},
+        {name: 'twitter:description', content: description},
+        {name: 'og:title', content: description}
+    ]
+});
+
 </script>
 
 <style scoped>

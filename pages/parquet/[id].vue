@@ -24,6 +24,17 @@ const parquets = {
 }
 
 const parquet = ref(parquets[locale.value] || parquetDefault.value);
+
+useHead({
+    meta: [
+        {name: 'description', content: parquet.value?.name},
+        {name: 'og:description', content: parquet.value?.name},
+        {name: 'twitter:description', content: parquet.value?.name},
+        {name: 'og:title', content: parquet.value?.name}
+    ],
+    titleTemplate: '%s - ' + parquet.value?.name,
+});
+
 </script>
 
 <template>

@@ -13,6 +13,22 @@ export default defineNuxtConfig({
                     content: '#303030',
                     media: '(prefers-color-scheme: dark)'
                 },
+                {
+                    name: 'description',
+                    content: 'Nonna - лучший паркет!'
+                },
+                {
+                    name: 'og:description',
+                    content: 'Nonna - лучший паркет!'
+                },
+                {
+                    name: 'twitter:description',
+                    content: 'Nonna - лучший паркет!'
+                },
+                {
+                    name: 'og:title',
+                    content: 'Nonna - лучший паркет!'
+                },
             ],
         },
     },

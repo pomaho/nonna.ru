@@ -16,6 +16,17 @@ const content = ref({
     categoryContent: parquets,
 });
 
+const description = 'Nonna - лучший паркет! Коллекция паркета';
+useHead({
+    titleTemplate: `%s - Коллекция паркета`,
+    meta: [
+        {name: 'description', content: description },
+        {name: 'description', content: description},
+        {name: 'og:description', content: description},
+        {name: 'twitter:description', content: description},
+        {name: 'og:title', content: description}
+    ]
+});
 </script>
 
 

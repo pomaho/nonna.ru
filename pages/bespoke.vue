@@ -19,6 +19,17 @@
 
 <script setup>
 import bespokes from '~/data/bespoke.json';
+const description = 'Nonna - лучший паркет! - На заказ';
+useHead({
+    titleTemplate: `%s - На заказ`,
+    meta: [
+        {name: 'description', content: description },
+        {name: 'description', content: description},
+        {name: 'og:description', content: description},
+        {name: 'twitter:description', content: description},
+        {name: 'og:title', content: description}
+    ]
+});
 </script>
 
 <style scoped>

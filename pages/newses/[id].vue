@@ -25,6 +25,16 @@ const newses = {
 
 const news = ref(newses[locale.value] || newsDefault.value);
 
+useHead({
+    meta: [
+        {name: 'description', content: news.value?.name},
+        {name: 'og:description', content: news.value?.name},
+        {name: 'twitter:description', content: news.value?.name},
+        {name: 'og:title', content: news.value?.name}
+    ],
+    titleTemplate: '%s - ' + news.value?.name,
+});
+
 </script>
 
 <template>

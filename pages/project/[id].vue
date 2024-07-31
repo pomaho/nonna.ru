@@ -22,6 +22,18 @@ const projects = {
 }
 
 const project = ref(projects[locale.value] || projectDefault.value);
+
+
+useHead({
+    meta: [
+        {name: 'description', content: project.value?.name},
+        {name: 'og:description', content: project.value?.name},
+        {name: 'twitter:description', content: project.value?.name},
+        {name: 'og:title', content: project.value?.name}
+    ],
+    titleTemplate: '%s - ' + project.value?.name,
+});
+
 </script>
 
 <template>

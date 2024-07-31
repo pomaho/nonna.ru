@@ -13,6 +13,18 @@
 
 <script setup lang="ts">
 const sections = [1, 2, 3, 4, 5, 6];
+const description = 'Nonna - лучший паркет! - О нас';
+useHead({
+    titleTemplate: '%s - О нас',
+    meta: [
+        {name: 'description', content: description },
+        {name: 'description', content: description},
+        {name: 'og:description', content: description},
+        {name: 'twitter:description', content: description},
+        {name: 'og:title', content: description}
+    ]
+});
+
 </script>
 
 <style scoped>

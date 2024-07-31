@@ -13,7 +13,7 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const sections = [1, 2, 3, 4, 5, 6, 7];
 const buttonLinks =[
     'about',
@@ -24,6 +24,19 @@ const buttonLinks =[
     'about',
     'about',
 ]
+
+const description = 'Nonna - лучший паркет! Главная';
+useHead({
+    titleTemplate: `%s - Главная`,
+    meta: [
+        {name: 'description', content: description },
+        {name: 'description', content: description},
+        {name: 'og:description', content: description},
+        {name: 'twitter:description', content: description},
+        {name: 'og:title', content: description}
+    ]
+});
+
 </script>
 
 <style scoped>

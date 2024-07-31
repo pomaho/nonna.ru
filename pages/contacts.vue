@@ -11,6 +11,20 @@
     </div>
 </template>
 
+<script setup>
+const description = 'Nonna - лучший паркет! Контакты';
+useHead({
+    titleTemplate: `%s - Контакты`,
+    meta: [
+        {name: 'description', content: description },
+        {name: 'description', content: description},
+        {name: 'og:description', content: description},
+        {name: 'twitter:description', content: description},
+        {name: 'og:title', content: description}
+    ]
+});
+
+</script>
 <style scoped>
 
 </style>

@@ -18,6 +18,18 @@ const content = ref({
     categoriesType: 'collection'
 });
 
+const description = 'Nonna - лучший паркет! Проекты';
+useHead({
+    titleTemplate: `%s - Проекты`,
+    meta: [
+        {name: 'description', content: description },
+        {name: 'description', content: description},
+        {name: 'og:description', content: description},
+        {name: 'twitter:description', content: description},
+        {name: 'og:title', content: description}
+    ]
+});
+
 </script>
 
 
