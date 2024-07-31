@@ -22,6 +22,27 @@
     h1 {
         font-size: 48px;
     }
+
+    .trailer-page {
+        .two-images.first,
+        .two-images.second {
+            .column-1 {
+                justify-content: flex-start;
+
+                .main-image {
+                    width: 350px;
+                }
+            }
+            .column-2 {
+                justify-content: flex-start;
+                .main-image {
+                    width: 500px;
+                    aspect-ratio: 1;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
 }
 
 @include media-breakpoint-down(xl) {
@@ -247,6 +268,22 @@
     .language {
         display: none;
     }
+
+    .trailer-page {
+        .two-images.first,
+        .two-images.second {
+            .column-2 {
+                padding-top: 40px;
+            }
+        }
+
+        .trailer-desc {
+            .column-2 {
+                align-items: flex-start;
+                padding: 30px 0;
+            }
+        }
+    }
 }
 
 @include media-breakpoint-down(sm) {
@@ -419,6 +456,22 @@
 
         .parquet-projects {
             padding: 60px 0;
+        }
+    }
+    .trailer-page {
+        .two-images.first,
+        .two-images.second {
+            .column-2 {
+                padding-top: 40px;
+            }
+        }
+
+        .trailer-desc {
+            .column-2 {
+                .trailer-desc-text {
+                    font-size: 16px;
+                }
+            }
         }
     }
 }
