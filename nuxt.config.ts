@@ -2,7 +2,19 @@ export default defineNuxtConfig({
     app: {
         head: {
             title: 'Nonna - лучший паркет!',
-        }
+            meta: [
+                {
+                    name: 'theme-color',
+                    content: '#303030',
+                    media: '(prefers-color-scheme: light)'
+                },
+                {
+                    name: 'theme-color',
+                    content: '#303030',
+                    media: '(prefers-color-scheme: dark)'
+                },
+            ],
+        },
     },
     css: ['@/assets/css/main.css', '@/assets/scss/app.scss'],
     modules: ['@nuxtjs/i18n'],
