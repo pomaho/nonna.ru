@@ -6,28 +6,5 @@
     "instagram": "https://www.instagram.com/eurohome_spb/",
     "telegram": "https://t.me/eurohomeofficial",
     "youtube": "https://youtube.com/@eurohome_official?si=25mngzp-LzCf6LHS"
-  },
-  "addresses": [
-    {
-      "city": "contact-city-1",
-      "address": "contact-address-1",
-      "additionalAddress": "contact-additional-address-1",
-      "workTime": "contact-work-time-1",
-      "phone": "+7 (812) 677-17-62"
-    },
-    {
-      "city": "contact-city-2",
-      "address": "contact-address-2",
-      "additionalAddress": "contact-additional-address-2",
-      "workTime": "contact-work-time-2",
-      "phone": "+7 (926) 767-66-88"
-    },
-    {
-      "city": "contact-city-3",
-      "address": "contact-address-3",
-      "additionalAddress": "contact-additional-address-3",
-      "workTime": "contact-work-time-3",
-      "phone": "+7 (925) 677-66-88"
-    }
-  ]
+  }
 }

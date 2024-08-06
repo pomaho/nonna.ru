@@ -14,8 +14,9 @@ const {data: contacts} = await useFetch(`${useRuntimeConfig().public.apiBase}/co
 <template>
     <div class="address-container">
         <ul>
-            <li v-for="(address, index) in contacts">
-                <h4 v-html="address.address"></h4>
+            <li v-for="(contact, index) in contacts">
+                <h4 v-html="contact.address"></h4>
+                <WidgetsPhoneLink :phone="contact.phone"/>
             </li>
         </ul>
     </div>

@@ -7,7 +7,6 @@
             :with-header="true"
         />
         <SectionsContacts />
-        <SectionsContactsMap />
     </div>
 </template>
 

@@ -31,6 +31,7 @@ const {data: contacts} = await useFetch(`${useRuntimeConfig().public.apiBase}/co
                         <h4 class="sub-heading">{{contact.sub_address}}</h4>
                         <p class="text" v-html="contact.work_time"></p>
                         <WidgetsPhoneLink :phone="contact.phone"/>
+                        <WidgetsMap :mapLink="contact.map_link"/>
                     </div>
                 </div>
             </div>

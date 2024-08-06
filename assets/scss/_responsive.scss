@@ -332,6 +332,15 @@
                     width: auto;
                 }
 
+                .footer-social {
+                    margin-top: 30px;
+                    text-align: center;
+
+                    li:last-child {
+                        margin-right: 0;
+                    }
+                }
+
                 .phone-contact-icon {
                     margin-top: 70px;
                 }
