@@ -1,6 +1,10 @@
 {
   "items": [
     {
+      "text": "menu-item-about-us",
+      "href": "/about"
+    },
+    {
       "text": "menu-item-collection",
       "href": "/collection"
     },
@@ -9,20 +13,12 @@
       "href": "/bespoke"
     },
     {
-      "text": "menu-item-about-us",
-      "href": "/about"
-    },
-    {
       "text": "menu-item-projects",
       "href": "/projects"
     },
     {
       "text": "menu-item-news",
       "href": "/news"
-    },
-    {
-      "text": "menu-item-trailer",
-      "href": "/trailer"
     },
     {
       "text": "menu-item-contacts",

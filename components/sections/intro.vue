@@ -10,8 +10,8 @@
             <div class="nonna-container">
                 <WidgetsHeader v-if="withHeader"/>
                 <div class="section-content">
-                    <h1 v-html="title.replaceAll('--br--', '<br/>')"></h1>
-                    <p v-html="text.replaceAll('--br--', '<br/>')"></p>
+                    <h1 class="intro-section-heading" v-html="title.replaceAll('--br--', '<br/>')"></h1>
+                    <p class="intro-section-text" v-html="text.replaceAll('--br--', '<br/>')"></p>
                     <nuxt-link v-if="button" :to="localePath('/' + buttonLink)" class="nonna-btn" aria-current="page">{{ button }}</nuxt-link>
                 </div>
             </div>

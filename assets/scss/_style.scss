@@ -4,6 +4,14 @@
     > .container {
         height: 100%;
     }
+
+    .intro-section-heading {
+        width: 1000px;
+    }
+
+    .intro-section-text {
+        width: 800px;
+    }
 }
 
 .shading {
@@ -366,7 +374,7 @@ h1, h2 {
 
     .language-link {
         text-decoration: none;
-        color: $text-description-color;
+        color: lighten($text-description-color, 20);
         font-family: 'Inter', sans-serif;
     }
 }
