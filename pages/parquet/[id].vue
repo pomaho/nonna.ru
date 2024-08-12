@@ -73,36 +73,31 @@ useHead({
                         <div class="column-2 col-lg-8 col-12">
                             <h3 class="heading">{{ parquet.name }}</h3>
                             <div class="text" v-html="parquet.description"></div>
+
+                            <div class="parquet-specifications">
+                                <div class="specs-row">
+                                    <div class="specification-name"><p>{{ $t('parquet-country') }}:</p></div>
+                                    <div class="specification-value"><p>{{ parquet.country?.name }}</p></div>
+                                </div>
+                                <div class="specs-row">
+                                    <div class="specification-name"><p>{{ $t('parquet-wood-type') }}:</p></div>
+                                    <div class="specification-value"><p>{{ parquet.wood?.name }}</p></div>
+                                </div>
+                                <div class="specs-row">
+                                    <div class="specification-name"><p>{{ $t('parquet-color') }}:</p></div>
+                                    <div class="specification-value"><p>{{ parquet.color?.name }}</p></div>
+                                </div>
+                                <div class="specs-row">
+                                    <div class="specification-name"><p>{{ $t('parquet-pattern') }}:</p></div>
+                                    <div class="specification-value"><p>{{ parquet.type_of_picture?.name }}</p></div>
+                                </div>
+                            </div>
+
                             <nuxt-link :to="localePath('/collection')" class="nonna-btn black-text-btn" aria-current="page">
                                 {{ $t('parquet-back-to-collection-button') }}
                             </nuxt-link>
                         </div>
                     </div>
-                </div>
-            </section>
-            <section class="specification-section">
-                <div class="container">
-                    <h2 class="specification-heading">{{ $t('parquet-specifications-heading') }}</h2>
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr>
-                            <td><h4 class="specification-name">{{ $t('parquet-country') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.country?.name }}</p></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="specification-name">{{ $t('parquet-wood-type') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.wood?.name }}</p></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="specification-name">{{ $t('parquet-color') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.color?.name }}</p></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="specification-name">{{ $t('parquet-pattern') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.type_of_picture?.name }}</p></td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
             </section>
             <SectionsListOfContent
