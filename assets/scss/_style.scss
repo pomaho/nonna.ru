@@ -469,13 +469,6 @@ h1, h2 {
 }
 
 .trailer-page {
-    .video-background {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-    }
     .two-images {
         min-height: 100vh;
         padding: 80px 0;
@@ -756,11 +749,32 @@ h1, h2 {
 }
 
 .video-background {
-    position: absolute;
+    position: relative;
     width: 100%;
     object-fit: cover;
     object-position: center;
     max-width: 100%;
-    height: 100vh;
+    height: auto;
     box-sizing: border-box;
+    &.mobile {
+        display: none;
+    }
+}
+
+.nonna-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-page {
+    .video-section {
+        background: #303030;
+        height: auto;
+        .header-logo-and-menu {
+            position: relative;
+            top: 0;
+        }
+    }
 }
