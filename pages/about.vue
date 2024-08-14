@@ -1,12 +1,13 @@
 <template>
     <div class="about-page">
+        <SectionsIntroVideoBg />
         <SectionsIntro
             v-for="(number, index) in sections"
             :key="index"
             :title="$t(`about-section-${number}-title`)"
             :text="$t(`about-section-${number}-text`)"
             :background="`about/section-${number}-bg.jpeg`"
-            :with-header="index === 0"
+            :with-header="false"
         />
     </div>
 </template>
