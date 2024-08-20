@@ -4,7 +4,7 @@
             <h2>{{$t('menu-item-contacts')}}</h2>
             <div class="row">
                 <div class="footer-column col-xl-6 col-lg-6 col-12">
-                    <img class="footer-logo" src="/images/nonna-new.png" alt="Nonna footer logo">
+                    <MediaLogo/>
 
                     <div class="footer-social">
                         <WidgetsSocialIcons />
@@ -18,3 +18,5 @@
         </div>
     </section>
 </template>
+<script setup lang="ts">
+</script>

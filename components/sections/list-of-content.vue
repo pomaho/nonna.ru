@@ -1,7 +1,7 @@
 <template>
     <section :class="'list-of-content-section ' + cssClass">
         <div class="container">
-            <p>{{ description }}</p>
+            <p v-html="description.replaceAll('--br--', '<br/>')"></p>
             <WidgetsCategoryLinks v-if="showCategories && content.categories"
                 :categories="content.categories"
                 :change-category="changeCategory"
