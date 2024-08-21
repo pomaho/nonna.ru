@@ -118,6 +118,11 @@ h1, h2, h3 {
             }
         }
     }
+
+    .header-mobile-menu-and-lang {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 .navbar {
@@ -788,7 +793,7 @@ h1, h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 20px 0 0 0;
 
     .footer & {
         align-items: flex-start;

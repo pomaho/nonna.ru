@@ -260,7 +260,7 @@
     }
 
     .language {
-        margin-top: 20px;
+        margin-left: 30px;
     }
 
     .trailer-page {
@@ -283,7 +283,7 @@
 @include media-breakpoint-down(sm) {
     .intro-section {
         .header-logo-and-menu {
-            top: 60px;
+            top: 20px;
             flex-direction: column;
             align-items: center;
 
@@ -297,8 +297,8 @@
 
     .about-page {
         .intro-section {
-            .header-logo-and-menu ~ .section-content {
-                margin-top: 120px;
+            .header-logo-and-menu {
+                padding: 0 0 20px 0;
             }
         }
     }
@@ -473,6 +473,20 @@
             .column-2 {
                 .trailer-desc-text {
                     font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .bespoke-page {
+        .intro-section {
+            .nonna-container {
+                flex-direction: column;
+
+                .header-logo-and-menu {
+                    position: relative;
+                    top: 0;
+                    padding-bottom: 30px;
                 }
             }
         }
