@@ -131,6 +131,23 @@ h1, h2, h3 {
             }
         }
     }
+    .sidenav-menu {
+        //text-transform: uppercase;
+
+        .nav-item {
+
+            .nav-link {
+                color: $menu-item-color;
+                font-weight: 400;
+
+                &:hover,
+                &.router-link-active {
+                    color: $menu-active-item-color;
+                }
+            }
+        }
+    }
+
 
     .header-mobile-menu-and-lang {
         display: flex;
