@@ -54,7 +54,6 @@ useHead({
                     <WidgetsHeader/>
                     <div class="section-content">
                         <h1>{{ $t('parquet-intro-heading') }}</h1>
-                        <p>{{ $t('parquet-intro-text') }}</p>
                     </div>
                 </div>
             </div>

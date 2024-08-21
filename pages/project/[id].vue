@@ -48,7 +48,6 @@ useHead({
                         <WidgetsHeader/>
                         <div class="section-content">
                             <h1>{{ project.name }}</h1>
-                            <p class="project-static-desc">Любой интерьер от классики до модерна.</p>
                         </div>
                     </div>
                 </div>
