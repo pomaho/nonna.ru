@@ -33,6 +33,19 @@ h1, h2, h3 {
     }
 }
 
+.home-page {
+    .intro-section-3 {
+        .intro-section-text {
+            width: 500px;
+        }
+    }
+    .intro-section-4 {
+        .intro-section-text {
+            width: 620px;
+        }
+    }
+}
+
 .shading {
     position: absolute;
     width: 100%;
@@ -169,7 +182,6 @@ h1, h2 {
     text-align: center;
 
     .row {
-        height: 670px;
         text-align: left;
         margin-top: 65px;
 

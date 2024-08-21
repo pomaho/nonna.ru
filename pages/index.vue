@@ -2,6 +2,7 @@
     <div class="home-page">
         <SectionsIntro
             v-for="(number, index) in sections"
+            :class="`intro-section-${index}`"
             :key="index"
             :title="$t(`home-section-${number}-title`)"
             :text="$t(`home-section-${number}-text`)"
