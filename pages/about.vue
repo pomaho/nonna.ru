@@ -3,6 +3,7 @@
         <SectionsIntroVideoBg />
         <SectionsIntro
             v-for="(number, index) in sections"
+            :class="`about-section-${number}`"
             :key="index"
             :title="$t(`about-section-${number}-title`)"
             :text="$t(`about-section-${number}-text`)"
