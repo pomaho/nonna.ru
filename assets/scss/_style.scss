@@ -800,6 +800,11 @@ h1, h2 {
         .specification-name {
             width: 350px;
             color: $menu-active-item-color;
+            font-weight: 400;
+        }
+
+        .specification-value {
+            text-align: right;
         }
     }
 }
