@@ -284,9 +284,19 @@
     .intro-section {
         .header-logo-and-menu {
             top: 20px;
-            flex-direction: column;
-            align-items: center;
+            padding: 0 20px;
 
+
+            .header-mobile-menu-and-lang {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .language {
+                    margin:10px 0;
+                    font-size: 16px;
+                }
+            }
             .navbar {
                 .navbar-toggler {
                     margin: 0 auto;
@@ -299,13 +309,6 @@
         }
     }
 
-    .about-page {
-        .intro-section {
-            .header-logo-and-menu {
-                padding: 0 0 20px 0;
-            }
-        }
-    }
     h1 {
         font-size: 24px;
     }

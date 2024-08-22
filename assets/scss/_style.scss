@@ -22,6 +22,8 @@ h1, h2, h3 {
 
     > .container {
         height: 100%;
+        z-index: 2;
+        position: relative;
     }
 
     .intro-section-heading {
@@ -52,6 +54,7 @@ h1, h2, h3 {
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
     pointer-events: none !important;
+    z-index: 1;
 }
 
 .nonna-container {
@@ -87,7 +90,7 @@ h1, h2, h3 {
     }
 
     .header-logo-and-menu {
-        top: 60px;
+        top: 30px;
     }
 }
 
@@ -111,6 +114,8 @@ h1, h2, h3 {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    z-index: 3;
+    padding: 0 80px;
 
     .navbar {
         //text-transform: uppercase;
@@ -846,6 +851,8 @@ h1, h2 {
         .header-logo-and-menu {
             position: relative;
             top: 0;
+            padding-top: 30px;
+            padding-bottom: 30px;
         }
     }
     .about-section-6 {

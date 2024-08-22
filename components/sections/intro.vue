@@ -6,9 +6,9 @@
         }"
     >
         <div class="shading"></div>
+        <WidgetsHeader v-if="withHeader"/>
         <div class="container">
             <div class="nonna-container">
-                <WidgetsHeader v-if="withHeader"/>
                 <div class="section-content">
                     <h1 class="intro-section-heading" v-html="title.replaceAll('--br--', '<br/>')"></h1>
                     <p class="intro-section-text" v-html="text.replaceAll('--br--', '<br/>')"></p>
