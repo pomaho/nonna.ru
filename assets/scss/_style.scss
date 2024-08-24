@@ -36,15 +36,24 @@ h1, h2, h3 {
 }
 
 .home-page {
+    .intro-section-1 {
+        background-position: 50% 50%;
+    }
     .intro-section-3 {
         .intro-section-text {
             width: 500px;
         }
     }
     .intro-section-4 {
+        .shading {
+            background: rgba(0, 0, 0, 0.5);
+        }
         .intro-section-text {
             width: 620px;
         }
+    }
+    .intro-section-6 {
+        background-position: 50% 0;
     }
 }
 
