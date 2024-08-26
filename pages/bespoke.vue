@@ -19,9 +19,9 @@
 
 <script setup>
 import bespokes from '~/data/bespoke.json';
-const description = 'Nonna - лучший паркет! - На заказ';
+const description = this.$t('Nonna - лучший паркет! - Эксклюзивность');
 useHead({
-    titleTemplate: `%s - На заказ`,
+    titleTemplate: `%s - Эксклюзивность`,
     meta: [
         {name: 'description', content: description },
         {name: 'description', content: description},
