@@ -332,6 +332,10 @@ h1, h2 {
     color: $text-description-color;
     padding: 100px 0;
 
+    .project-page & {
+        padding: 0 0 100px 0;
+    }
+
     p {
         font-weight: 300;
     }

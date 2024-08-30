@@ -43,9 +43,9 @@ useHead({
         </div>
         <div v-else>
             <section class="project-intro-section intro-section">
+                <WidgetsHeader/>
                 <div class="container">
                     <div class="nonna-container">
-                        <WidgetsHeader/>
                         <div class="section-content">
                             <h1>{{ project.name }}</h1>
                         </div>
@@ -70,7 +70,7 @@ useHead({
                     <div class="row">
                         <div class="column-1 col-lg-6 col-12">
                             <div class="contact-icon instagram-contact-icon"></div>
-                            <p class="author-text">{{ $t('project-author') }} {{ project.author }}</p>
+                            <p class="author-text">{{ $t('project-author') }} <br>{{ project.author }}</p>
                             <a class="instagram-link" target="_blank" :href="`https://instagram.com/${project.author_instagram}`">@{{project.author_instagram}}</a>
                         </div>
                         <!--div class="column-2 col-lg-6 col-12">

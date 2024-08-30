@@ -10,7 +10,7 @@
                 </nuxt-link>
                 <div class="responsive-name flex-centered">
                     <nuxt-link :to="localePath(`/${contentType}/${content.id}`)">
-                        <p>{{ content.name }}</p>
+                        <p v-html="content.name"></p>
                     </nuxt-link>
                 </div>
             </div>

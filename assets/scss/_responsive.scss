@@ -377,6 +377,8 @@
     }
 
     .list-of-content-section {
+        padding: 50px 0;
+
         .category-links {
             .navbar {
                 flex-wrap: nowrap;
@@ -423,6 +425,15 @@
 
         .text {
             font-size: 16px;
+        }
+
+        .instagram-contact-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        &.section-author {
+            padding: 40px 0 !important;
         }
     }
 
