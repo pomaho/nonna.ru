@@ -363,6 +363,10 @@ h1, h2 {
         height: 100%;
         aspect-ratio: 1;
         object-fit: cover;
+
+        .project-page & {
+            object-position: bottom;
+        }
     }
 
     .nonna-btn {
@@ -463,6 +467,10 @@ h1, h2 {
         width: 100%;
         aspect-ratio: 1;
         object-fit: cover;
+
+        .project-page & {
+            object-position: bottom;
+        }
     }
 
     .heading {

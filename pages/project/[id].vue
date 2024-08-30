@@ -65,25 +65,6 @@ useHead({
                 </div>
             </section>
 
-            <section :class="'list-of-content-section'">
-                <div class="container">
-                    <p>{{ $t('project-parquet-usage') }}
-                        <nuxt-link class="parquet-link" :to="localePath(`/parquet/${project.parquet?.id}`)">
-                            {{ project.parquet?.name }}
-                        </nuxt-link>
-                    </p>
-
-
-                    <div class="row g-3">
-                        <div v-if="project.media" class="col-xl-4 col-lg-6 col-12" v-for="(media, index) in project.media" :key="index">
-                            <div class="hover-box" v-if="media && index < project.media?.length - 1">
-                                <img class="category-content" :src="useRuntimeConfig().public.apiBaseFiles + media.url" alt="картинка для контента">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section class="two-columns section-author">
                 <div class="container">
                     <div class="row">
@@ -92,8 +73,25 @@ useHead({
                             <p class="author-text">{{ $t('project-author') }} {{ project.author }}</p>
                             <a class="instagram-link" target="_blank" :href="`https://instagram.com/${project.author_instagram}`">@{{project.author_instagram}}</a>
                         </div>
-                        <div class="column-2 col-lg-6 col-12">
+                        <!--div class="column-2 col-lg-6 col-12">
                             <img v-if="project.media && project.media.length" class="main-image" :src="useRuntimeConfig().public.apiBaseFiles + project.media[project.media?.length - 1].url" alt="">
+                        </div-->
+                    </div>
+                </div>
+            </section>
+
+            <section :class="'list-of-content-section'">
+                <div class="container">
+                    <!--p>{{ $t('project-parquet-usage') }}
+                        <nuxt-link class="parquet-link" :to="localePath(`/parquet/${project.parquet?.id}`)">
+                            {{ project.parquet?.name }}
+                        </nuxt-link>
+                    </p-->
+                    <div class="row g-3">
+                        <div v-if="project.media" class="col-xl-4 col-lg-6 col-12" v-for="(media, index) in project.media" :key="index">
+                            <div class="hover-box" v-if="media && index < project.media?.length">
+                                <img class="category-content" :src="useRuntimeConfig().public.apiBaseFiles + media.url" alt="картинка для контента">
+                            </div>
                         </div>
                     </div>
                 </div>
