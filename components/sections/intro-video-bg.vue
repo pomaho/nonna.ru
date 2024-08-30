@@ -4,7 +4,7 @@
     >
         <WidgetsHeader />
         <video class="video-background"
-               src="/IMG_9095.M4V"
+               :src="`/${videoUrl}`"
                controls=""
                poster="/images/about/video-poster.png" width="100%">
             Sorry, your browser does not support HTML5 video.
@@ -19,6 +19,9 @@ defineProps({
         default: '',
     }
 });
+const {locale} = useI18n();
+const videoUrl = locale.value === 'ru' ? 'IMG_9095.M4V' : 'IMG_0812.MOV';
+
 </script>
 
 <style scoped>
