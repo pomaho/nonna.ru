@@ -7,7 +7,6 @@
                preload="none"
                controls=""
                poster="/images/about/video-poster.png" width="100%">
-<!--            <source :src="`/${videoUrlWebm}`" type="video/webm">-->
             <source :src="`/${videoUrl}`" type="video/mp4">
             Sorry, your browser does not support HTML5 video.
         </video>
@@ -22,8 +21,7 @@ defineProps({
     }
 });
 const {locale} = useI18n();
-const videoUrl = locale.value === 'ru' ? 'IMG_0821_H.mp4' : 'IMG_0812.mp4';
-const videoUrlWebm = locale.value === 'ru' ? 'IMG_0821_H.webm' : 'IMG_0812.webm';
+const videoUrl = locale.value === 'ru' ? 'IMG_0821.mp4' : 'IMG_0812.mp4';
 
 </script>
 
