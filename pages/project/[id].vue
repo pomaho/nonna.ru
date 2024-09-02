@@ -55,10 +55,8 @@ useHead({
             <section class="two-columns">
                 <div class="container">
                     <div class="row">
-                        <div class="column-1 col-lg-8 col-12">
+                        <div class="column-1 col-lg-12 col-12">
                             <img class="main-image" :src="useRuntimeConfig().public.apiBaseFiles + project.image?.url" alt="">
-                        </div>
-                        <div class="column-2 col-lg-4 col-12">
                             <div class="text" v-html="project.description"></div>
                         </div>
                     </div>

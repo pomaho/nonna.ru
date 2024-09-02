@@ -468,9 +468,12 @@ h1, h2 {
     }
 
     .main-image {
-        width: 100%;
+        width: 65%;
         aspect-ratio: 1;
         object-fit: cover;
+        float:left;
+        margin-right: 40px;
+        margin-bottom: 20px;
 
         .project-page & {
             object-position: bottom;
