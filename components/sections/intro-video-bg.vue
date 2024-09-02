@@ -22,7 +22,7 @@ defineProps({
     }
 });
 const {locale} = useI18n();
-const videoUrl = locale.value === 'ru' ? 'IMG_0821_H.mp4' : 'IMG_0812.m4v';
+const videoUrl = locale.value === 'ru' ? 'IMG_0821_H.mp4' : 'IMG_0812.mp4';
 const videoUrlWebm = locale.value === 'ru' ? 'IMG_0821_H.webm' : 'IMG_0812.webm';
 
 </script>
