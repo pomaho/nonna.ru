@@ -4,6 +4,7 @@
     >
         <WidgetsHeader />
         <video class="video-background"
+               preload="none"
                :src="`/${videoUrl}`"
                controls=""
                poster="/images/about/video-poster.png" width="100%">
