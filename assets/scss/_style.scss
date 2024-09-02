@@ -383,6 +383,7 @@ h1, h2 {
     .navbar-nav {
         .nav-item {
             font-weight: 600;
+            cursor: pointer;
 
             .nav-link.active {
                 color: $menu-active-item-color;
