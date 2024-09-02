@@ -5,7 +5,7 @@
                 <nuxt-link :to="localePath(`/${contentType}/${content.id}`)">
                     <img class="category-content" :src="useRuntimeConfig().public.apiBaseFiles + content.image?.url" alt="картинка для контента">
                     <div class="content-box flex-centered">
-                        <p>{{ content.name }}</p>
+                        <p v-html="content.name"></p>
                     </div>
                 </nuxt-link>
                 <div class="responsive-name flex-centered">

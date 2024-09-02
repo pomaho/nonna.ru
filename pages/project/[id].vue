@@ -47,7 +47,7 @@ useHead({
                 <div class="container">
                     <div class="nonna-container">
                         <div class="section-content">
-                            <h1>{{ project.name }}</h1>
+                            <h1 v-html="project.name"></h1>
                         </div>
                     </div>
                 </div>
