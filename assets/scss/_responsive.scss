@@ -519,4 +519,22 @@
             }
         }
     }
+
+    .why-nonna {
+        &.video-section {
+
+            .video-description {
+                margin-top: 30px;
+                text-align: justify;
+                color: black;
+            }
+
+            .video-background {
+                float: none;
+                margin-right: 0;
+                width: 100%;
+            }
+        }
+    }
+
 }
