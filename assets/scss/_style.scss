@@ -848,8 +848,13 @@ h1, h2 {
     max-width: 100%;
     height: auto;
     box-sizing: border-box;
+
     &.mobile {
         display: none;
+    }
+
+    .why-nonna & {
+        width: auto;
     }
 }
 
@@ -883,5 +888,28 @@ h1, h2 {
     }
     .about-section-6 {
         background-position: top;
+    }
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.why-nonna {
+    &.video-section {
+        padding-bottom: 50px;
+
+        .video-description {
+            text-align: justify;
+            color: black;
+        }
+
+        .video-background {
+            float: left;
+            margin-right: 50px;
+            width: 65%;
+        }
     }
 }

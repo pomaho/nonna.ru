@@ -3,7 +3,7 @@
   "menu-item-bespoke": "Bespoke",
   "menu-item-about-us": "About the Factory",
   "menu-item-projects": "Projects",
-  "menu-item-news": "News",
+  "menu-item-why-nonna": "Why Nonna?",
   "menu-item-trailer": "Trailer",
   "menu-item-contacts": "Contacts",
 
@@ -45,11 +45,12 @@
 
   "projects-list-content-description": "",
 
-  "news-intro-section-title": "Our News",
-  "news-intro-section-text": "",
+  "why-nonna-intro-section-title": "Why Nonna?",
+  "why-nonna-intro-section-text": "",
   "news-intro-section-button": "View All",
 
-  "news-list-content-description": "",
+  "why-nonna-list-content-description": "Many parquet manufacturers in Russia strive to apply a protective layer to the wood in a way that minimizes environmental impact on the board itself. This is achieved by applying finishing layers such as lacquer, UV lacquer, UV oil, and oil with hard wax. This process creates a barrier between the wood and the environment.--br-- --br--The Nonna factory takes a different approach, offering the option of using fully natural oil as the final coating. Thanks to this, our engineered wood flooring can absorb water and then gradually release moisture back into the room's air.--br-- --br--Wood is a material that can absorb and release water. During moisture absorption, the wood expands, and during moisture release, it contracts. The difference in volume causes the wood to move, a process known as swelling and shrinking. In a mild form, this is related to the indoor climate of an apartment, but a striking example of such changes can be observed in a bathroom area.",
+  "why-nonna-list-content-video-description": "This is where the properties of Nonna's engineered wood flooring come into play, thanks to its Trio construction. The combination of a symmetrical board structure, which ensures stability, and an open-pored surface, which allows the wood to diffuse moisture, enables moisture circulation without warping the boards. It's also crucial that the boards have time to release moisture and are not constantly submerged, as they would be in a shower cabin, for example. We confidently implement engineered wood flooring projects even in bathroom areas.",
 
   "contacts-intro-section-title": "Our Contacts",
   "contacts-intro-section-text": "",
