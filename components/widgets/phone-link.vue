@@ -1,5 +1,5 @@
 <template>
-  <a class="phone-link" :href="`tel:${phone}`">{{ phone }}</a>
+  <a class="phone-link" :href="`tel:${phone}`" v-html="phone"></a>
 </template>
 
 <script setup>
