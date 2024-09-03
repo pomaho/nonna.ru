@@ -53,6 +53,13 @@ const videoUrl = locale.value === 'ru' ? 'nonna-water.mp4' : 'nonna-water.mp4';
             </div>
         </section>
     </div>
+    <SectionsIntro
+        :title="$t(`why-nonna-cleanup-section-title`)"
+        :text="$t(`why-nonna-cleanup-section-text`)"
+        :background="`why-nonna/section-cleanup-bg.jpg`"
+        :with-header="true"
+    />
+
 </template>
 
 <style scoped>
