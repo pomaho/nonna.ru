@@ -1,7 +1,9 @@
 <script setup>
 const images = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-const description = 'Nonna - лучший паркет! Новости';
+const {locale, t} = useI18n();
+const videoUrl = locale.value === 'ru' ? 'nonna-water.mp4' : 'nonna-water.mp4';
+// const description = 'Nonna - лучший паркет! Новости';
+const description = t('seo-page-description');
 useHead({
     titleTemplate: `%s - Почему Nonna?`,
     meta: [
@@ -12,8 +14,6 @@ useHead({
         {name: 'og:title', content: description}
     ]
 });
-const {locale} = useI18n();
-const videoUrl = locale.value === 'ru' ? 'nonna-water.mp4' : 'nonna-water.mp4';
 
 </script>
 

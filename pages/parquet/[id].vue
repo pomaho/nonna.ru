@@ -27,7 +27,7 @@ const parquet = ref(parquets[locale.value] || parquetDefault.value);
 
 const {data: projects} = await useFetch(`${useRuntimeConfig().public.apiBase}/projects?locale=${locale.value}&populate=*`, fetchParams);
 
-const projectsWithParquet = projects.value.filter((project) => project.parquet.id === parquet.value.id);
+const projectsWithParquet = projects.value.filter((project) => project.parquet?.id === parquet.value?.id);
 
 const content = ref({
     categoryContent: projectsWithParquet,
