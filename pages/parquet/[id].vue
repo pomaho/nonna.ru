@@ -86,10 +86,6 @@ useHead({
                                     <div class="specification-name"><p>{{ $t('parquet-color') }}:</p></div>
                                     <div class="specification-value"><p>{{ parquet.color?.name }}</p></div>
                                 </div>
-                                <div class="specs-row">
-                                    <div class="specification-name"><p>{{ $t('parquet-pattern') }}:</p></div>
-                                    <div class="specification-value"><p>{{ parquet.type_of_picture?.name }}</p></div>
-                                </div>
                             </div>
 
                             <nuxt-link :to="localePath('/collection')" class="nonna-btn black-text-btn" aria-current="page">
