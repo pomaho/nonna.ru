@@ -99,6 +99,15 @@ useHead({
                     </div>
                 </div>
             </section>
+
+            <section class="parquet-images" v-if="parquet.images && parquet.images.length">
+                <div class="container">
+                    <div class="images-container">
+                        <img class="main-image" v-for="(image, index) in parquet.images" :src="useRuntimeConfig().public.apiBaseFiles + image.url" alt="">
+                    </div>
+                </div>
+            </section>
+
             <SectionsListOfContent
                 :description="`${$t('parquet-used-in-projects')} ${parquet.name}`"
                 :content="content"

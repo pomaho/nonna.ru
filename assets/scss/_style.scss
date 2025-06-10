@@ -914,3 +914,19 @@ h1, h2 {
         }
     }
 }
+
+.parquet-images {
+    .images-container {
+        display: flex;
+        flex-flow: wrap;
+
+        .main-image {
+            max-width: 30%;
+            aspect-ratio: 1;
+            margin-top: 20px;
+            margin-right: 20px;
+            object-fit: cover;
+            object-position: bottom;
+        }
+    }
+}
