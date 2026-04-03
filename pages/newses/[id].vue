@@ -4,28 +4,49 @@ import {useRoute} from 'vue-router';
 const route = useRoute();
 const {locale} = useI18n();
 const newsId = ref(parseFloat(route.params.id) || null);
-const fetchParams = {
-    server: true,
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
-    transform: (parquet) => parquet.data
+const news = ref(null);
+
+const fetchNewsById = async (id) => {
+    const response = await $fetch(`${useRuntimeConfig().public.apiBase}/site-news-many/${id}`, {
+        query: {
+            populate: '*',
+        },
+        headers: {
+            authorization: `Bearer ${useRuntimeConfig().public.bearerToken}`,
+        },
+    });
+
+    return response?.data?.attributes
+        ? {
+            id: response.data.id,
+            ...response.data.attributes,
+        }
+        : response?.data || null;
 };
 
-const newsesApiUrl = `${useRuntimeConfig().public.apiBase}/site-news-many/`;
-const {data: newsDefault} = await useFetch(`${newsesApiUrl}${newsId.value}?populate=*`, fetchParams);
+onMounted(async () => {
+    try {
+        const newsDefault = await fetchNewsById(newsId.value);
+        const localizedId = newsDefault?.localizations?.length
+            ? newsDefault.localizations[0].id
+            : newsId.value;
+        const newsLocalized = localizedId !== newsId.value
+            ? await fetchNewsById(localizedId)
+            : newsDefault;
 
-const localizedId = newsDefault.value?.localizations && newsDefault.value?.localizations.length ? newsDefault.value.localizations[0].id : newsId.value;
-const {data: newsLocalized} = await useFetch(`${newsesApiUrl}${localizedId}?populate=*`, fetchParams);
+        const newses = {
+            [newsDefault?.locale]: newsDefault,
+            [newsLocalized?.locale]: newsLocalized,
+        };
 
-const newses = {
-    [newsDefault.value?.locale]: newsDefault.value,
-    [newsLocalized.value?.locale]: newsLocalized.value,
-};
+        news.value = newses[locale.value] || newsDefault;
+    } catch (error) {
+        console.error(error);
+        news.value = null;
+    }
+});
 
-const news = ref(newses[locale.value] || newsDefault.value);
-
-useHead({
+useHead(() => ({
     meta: [
         {name: 'description', content: news.value?.name},
         {name: 'og:description', content: news.value?.name},
@@ -33,7 +54,7 @@ useHead({
         {name: 'og:title', content: news.value?.name}
     ],
     titleTemplate: '%s - ' + news.value?.name,
-});
+}));
 
 </script>
 

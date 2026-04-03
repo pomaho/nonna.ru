@@ -1,19 +1,42 @@
 <script setup>
 const {locale} = useI18n();
-const fetchParams = {
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
-    transform: (response) => response.data
-};
+const parquets = ref([]);
+const categories = ref([]);
 
-const {data: parquets} = await useFetch(`${useRuntimeConfig().public.apiBase}/parquets?locale=${locale.value}&populate=*`, fetchParams);
+const content = computed(() => ({
+    categories: Array.isArray(categories.value) ? categories.value : [],
+    categoryContent: Array.isArray(parquets.value) ? parquets.value : [],
+}));
 
-const {data: categories} = await useFetch(`${useRuntimeConfig().public.apiBase}/woods?locale=${locale.value}`, fetchParams);
+onMounted(async () => {
+    try {
+        const [parquetsResponse, categoriesResponse] = await Promise.all([
+            $fetch(`${useRuntimeConfig().public.apiBase}/parquets`, {
+                query: {
+                    locale: locale.value,
+                    populate: '*',
+                },
+                headers: {
+                    authorization: `Bearer ${useRuntimeConfig().public.bearerToken}`,
+                },
+            }),
+            $fetch(`${useRuntimeConfig().public.apiBase}/woods`, {
+                query: {
+                    locale: locale.value,
+                },
+                headers: {
+                    authorization: `Bearer ${useRuntimeConfig().public.bearerToken}`,
+                },
+            }),
+        ]);
 
-const content = ref({
-    categories,
-    categoryContent: parquets,
+        parquets.value = parquetsResponse?.data || [];
+        categories.value = categoriesResponse?.data || [];
+    } catch (error) {
+        console.error(error);
+        parquets.value = [];
+        categories.value = [];
+    }
 });
 
 const description = 'Nonna - лучший паркет! Коллекция паркета';
@@ -38,7 +61,7 @@ useHead({
             :background="`collection/section-1-bg.jpeg`"
             :with-header="true"
         />
-        <div v-if="!parquets || !categories">
+        <div v-if="!parquets.length || !categories.length">
             <p class="color: black;">Loading....</p>
         </div>
         <SectionsListOfContent v-else

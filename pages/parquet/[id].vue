@@ -4,37 +4,70 @@ import {useRoute} from 'vue-router';
 const route = useRoute();
 const {locale} = useI18n();
 const parquetId = ref(route.params.id || null);
-const fetchParams = {
-    server: true,
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
-    transform: (parquet) => parquet.data
+const parquet = ref(null);
+const projects = ref([]);
+
+const content = computed(() => ({
+    categoryContent: Array.isArray(projects.value)
+        ? projects.value.filter((project) => project.parquet?.id === parquet.value?.id)
+        : [],
+    categoriesType: 'collection'
+}));
+
+const fetchParquetById = async (id) => {
+    const response = await $fetch(`${useRuntimeConfig().public.apiBase}/parquets/${id}`, {
+        query: {
+            populate: '*',
+        },
+        headers: {
+            authorization: `Bearer ${useRuntimeConfig().public.bearerToken}`,
+        },
+    });
+
+    return response?.data?.attributes
+        ? {
+            id: response.data.id,
+            ...response.data.attributes,
+        }
+        : response?.data || null;
 };
 
-const parquetsApiUrl = `${useRuntimeConfig().public.apiBase}/parquets/`;
-const {data: parquetDefault} = await useFetch(`${parquetsApiUrl}${parquetId.value}?populate=*`, fetchParams);
+onMounted(async () => {
+    try {
+        const parquetDefault = await fetchParquetById(parquetId.value);
+        const localizedId = parquetDefault?.localizations?.length
+            ? parquetDefault.localizations[0].id
+            : parquetId.value;
+        const parquetLocalized = localizedId !== parquetId.value
+            ? await fetchParquetById(localizedId)
+            : parquetDefault;
 
-const localizedId = parquetDefault.value?.localizations && parquetDefault.value?.localizations.length ? parquetDefault.value.localizations[0].id : parquetId.value;
-const {data: parquetLocalized} = await useFetch(`${parquetsApiUrl}${localizedId}?populate=*`, fetchParams);
+        const parquets = {
+            [parquetDefault?.locale]: parquetDefault,
+            [parquetLocalized?.locale]: parquetLocalized,
+        };
 
-const parquets = {
-    [parquetDefault.value?.locale]: parquetDefault.value,
-    [parquetLocalized.value?.locale]: parquetLocalized.value,
-}
+        parquet.value = parquets[locale.value] || parquetDefault;
 
-const parquet = ref(parquets[locale.value] || parquetDefault.value);
+        const projectsResponse = await $fetch(`${useRuntimeConfig().public.apiBase}/projects`, {
+            query: {
+                locale: locale.value,
+                populate: '*',
+            },
+            headers: {
+                authorization: `Bearer ${useRuntimeConfig().public.bearerToken}`,
+            },
+        });
 
-const {data: projects} = await useFetch(`${useRuntimeConfig().public.apiBase}/projects?locale=${locale.value}&populate=*`, fetchParams);
-
-const projectsWithParquet = projects.value.filter((project) => project.parquet?.id === parquet.value?.id);
-
-const content = ref({
-    categoryContent: projectsWithParquet,
-    categoriesType: 'collection'
+        projects.value = projectsResponse?.data || [];
+    } catch (error) {
+        console.error(error);
+        parquet.value = null;
+        projects.value = [];
+    }
 });
 
-useHead({
+useHead(() => ({
     meta: [
         {name: 'description', content: parquet.value?.name},
         {name: 'og:description', content: parquet.value?.name},
@@ -42,7 +75,7 @@ useHead({
         {name: 'og:title', content: parquet.value?.name}
     ],
     titleTemplate: '%s - ' + parquet.value?.name,
-});
+}));
 
 </script>
 

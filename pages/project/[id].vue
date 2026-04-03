@@ -3,28 +3,49 @@ import {useRoute} from 'vue-router';
 const route = useRoute();
 const {locale} = useI18n();
 const projectId = ref(parseFloat(route.params.id) || null);
-const fetchParams = {
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
-    transform: (response) => response.data
+const project = ref(null);
+
+const fetchProjectById = async (id) => {
+    const response = await $fetch(`${useRuntimeConfig().public.apiBase}/projects/${id}`, {
+        query: {
+            populate: '*',
+        },
+        headers: {
+            authorization: `Bearer ${useRuntimeConfig().public.bearerToken}`,
+        },
+    });
+
+    return response?.data?.attributes
+        ? {
+            id: response.data.id,
+            ...response.data.attributes,
+        }
+        : response?.data || null;
 };
 
-const projectsApiUrl = `${useRuntimeConfig().public.apiBase}/projects/`;
-const {data: projectDefault} = await useFetch(`${projectsApiUrl}${projectId.value}?populate=*`, fetchParams);
+onMounted(async () => {
+    try {
+        const projectDefault = await fetchProjectById(projectId.value);
+        const localizedId = projectDefault?.localizations?.length
+            ? projectDefault.localizations[0].id
+            : projectId.value;
+        const projectLocalized = localizedId !== projectId.value
+            ? await fetchProjectById(localizedId)
+            : projectDefault;
 
-const localizedId = projectDefault.value?.localizations && projectDefault.value?.localizations.length ? projectDefault.value.localizations[0].id : projectId.value;
-const {data: projectLocalized} = await useFetch(`${projectsApiUrl}${localizedId}?populate=*`, fetchParams);
+        const projects = {
+            [projectDefault?.locale]: projectDefault,
+            [projectLocalized?.locale]: projectLocalized,
+        };
 
-const projects = {
-    [projectDefault.value?.locale]: projectDefault.value,
-    [projectLocalized.value?.locale]: projectLocalized.value,
-}
+        project.value = projects[locale.value] || projectDefault;
+    } catch (error) {
+        console.error(error);
+        project.value = null;
+    }
+});
 
-const project = ref(projects[locale.value] || projectDefault.value);
-
-
-useHead({
+useHead(() => ({
     meta: [
         {name: 'description', content: project.value?.name},
         {name: 'og:description', content: project.value?.name},
@@ -32,7 +53,7 @@ useHead({
         {name: 'og:title', content: project.value?.name}
     ],
     titleTemplate: '%s - ' + project.value?.name,
-});
+}));
 
 </script>
 

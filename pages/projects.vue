@@ -1,21 +1,43 @@
 <script setup>
 const {locale} = useI18n();
-const fetchParams = {
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
-    transform: (response) => response.data
-};
+const projects = ref([]);
+const categories = ref([]);
 
-const {data: projects} = await useFetch(`${useRuntimeConfig().public.apiBase}/projects?locale=${locale.value}&populate=*`, fetchParams);
-
-const {data: categories} = await useFetch(`${useRuntimeConfig().public.apiBase}/type-of-properties?locale=${locale.value}`, fetchParams);
-
-
-const content = ref({
-    categories,
-    categoryContent: projects,
+const content = computed(() => ({
+    categories: Array.isArray(categories.value) ? categories.value : [],
+    categoryContent: Array.isArray(projects.value) ? projects.value : [],
     categoriesType: 'collection'
+}));
+
+onMounted(async () => {
+    try {
+        const [projectsResponse, categoriesResponse] = await Promise.all([
+            $fetch(`${useRuntimeConfig().public.apiBase}/projects`, {
+                query: {
+                    locale: locale.value,
+                    populate: '*',
+                },
+                headers: {
+                    authorization: `Bearer ${useRuntimeConfig().public.bearerToken}`,
+                },
+            }),
+            $fetch(`${useRuntimeConfig().public.apiBase}/type-of-properties`, {
+                query: {
+                    locale: locale.value,
+                },
+                headers: {
+                    authorization: `Bearer ${useRuntimeConfig().public.bearerToken}`,
+                },
+            }),
+        ]);
+
+        projects.value = projectsResponse?.data || [];
+        categories.value = categoriesResponse?.data || [];
+    } catch (error) {
+        console.error(error);
+        projects.value = [];
+        categories.value = [];
+    }
 });
 
 const description = 'Nonna - лучший паркет! Проекты';
