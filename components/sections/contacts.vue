@@ -1,13 +1,5 @@
 <script setup>
 const {locale} = useI18n();
-const normalizeContacts = (value) => {
-    if (!Array.isArray(value)) {
-        return [];
-    }
-
-    return value.map((contact) => contact?.attributes ?? contact);
-};
-
 const {
     data: contactsData,
     error,
@@ -19,10 +11,10 @@ const {
     default: () => [],
 });
 
-const contacts = ref(normalizeContacts(contactsData.value));
+const contacts = ref(contactsData.value ?? []);
 
 watch(contactsData, (value) => {
-    contacts.value = normalizeContacts(value);
+    contacts.value = value ?? [];
 });
 
 onMounted(async () => {
@@ -34,11 +26,9 @@ onMounted(async () => {
             },
         });
 
-        contacts.value = normalizeContacts(response);
+        contacts.value = response ?? [];
     }
 });
-
-const contactsDebug = computed(() => JSON.stringify(contacts.value, null, 2));
 
 </script>
 
@@ -52,7 +42,6 @@ const contactsDebug = computed(() => JSON.stringify(contacts.value, null, 2));
                     <img class="main-image" src="/images/contacts/contact-image.png" alt="">
                 </div>
                 <div class="column-2 col-lg-8 col-12">
-                    <pre>{{ contactsDebug }}</pre>
                     <div
                         class="contacts-container"
                         :class="{
