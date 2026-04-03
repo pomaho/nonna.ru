@@ -1,22 +1,28 @@
 <script setup>
 const {locale} = useI18n();
-const {
-    data: contacts,
-    error,
-    refresh,
-} = await useFetch('/api/contacts', {
-    query: computed(() => ({
-        locale: locale.value,
-        populate: '*',
-    })),
-    default: () => [],
-});
+const contacts = ref([]);
+const contactsSafe = computed(() => Array.isArray(contacts.value) ? contacts.value : []);
 
-onMounted(() => {
-    if (!contacts.value?.length || error.value) {
-        refresh();
+onMounted(async () => {
+    try {
+        const response = await $fetch(`${useRuntimeConfig().public.apiBase}/contacts`, {
+            query: {
+                locale: locale.value,
+                populate: '*',
+            },
+            headers: {
+                authorization: `Bearer ${useRuntimeConfig().public.bearerToken}`,
+            },
+        });
+
+        contacts.value = response?.data?.map((contact) => contact?.attributes ?? contact) || [];
+    } catch (error) {
+        console.error(error);
+        contacts.value = [];
     }
 });
+
+const contactsDebug = computed(() => JSON.stringify(contacts.value, null, 2));
 
 </script>
 
@@ -30,12 +36,13 @@ onMounted(() => {
                     <img class="main-image" src="/images/contacts/contact-image.png" alt="">
                 </div>
                 <div class="column-2 col-lg-8 col-12">
+                    <pre>{{ contactsDebug }}</pre>
                     <div
                         class="contacts-container"
                         :class="{
                             first: index === 0,
                         }"
-                        v-for="(contact, index) in contacts" :key="index">
+                        v-for="(contact, index) in contactsSafe" :key="index">
                         <h3 class="heading" v-html="contact.address"></h3>
                         <h4 class="sub-heading" v-html="contact.sub_address"></h4>
                         <p class="text" v-html="contact.work_time"></p>
