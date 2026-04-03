@@ -1,13 +1,22 @@
 <script setup>
 const {locale} = useI18n();
-const fetchParams = {
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
-    transform: (response) => response.data
-};
+const {
+    data: contacts,
+    error,
+    refresh,
+} = await useFetch('/api/contacts', {
+    query: computed(() => ({
+        locale: locale.value,
+        populate: '*',
+    })),
+    default: () => [],
+});
 
-const {data: contacts} = await useFetch(`${useRuntimeConfig().public.apiBase}/contacts?locale=${locale.value}&populate=*`, fetchParams);
+onMounted(() => {
+    if (!contacts.value?.length || error.value) {
+        refresh();
+    }
+});
 
 </script>
 
