@@ -1,9 +1,8 @@
 <script setup>
 const {locale} = useI18n();
 const {
-    data: contacts,
+    data: contactsData,
     error,
-    refresh,
 } = await useFetch('/api/contacts', {
     query: computed(() => ({
         locale: locale.value,
@@ -12,9 +11,22 @@ const {
     default: () => [],
 });
 
-onMounted(() => {
+const contacts = ref(contactsData.value ?? []);
+
+watch(contactsData, (value) => {
+    contacts.value = value ?? [];
+});
+
+onMounted(async () => {
     if (!contacts.value?.length || error.value) {
-        refresh();
+        const response = await $fetch('/api/contacts', {
+            query: {
+                locale: locale.value,
+                populate: '*',
+            },
+        });
+
+        contacts.value = response ?? [];
     }
 });
 
