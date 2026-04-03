@@ -22,8 +22,6 @@ onMounted(async () => {
     }
 });
 
-const contactsDebug = computed(() => JSON.stringify(contacts.value, null, 2));
-
 </script>
 
 <template>
@@ -36,7 +34,6 @@ const contactsDebug = computed(() => JSON.stringify(contacts.value, null, 2));
                     <img class="main-image" src="/images/contacts/contact-image.png" alt="">
                 </div>
                 <div class="column-2 col-lg-8 col-12">
-                    <pre>{{ contactsDebug }}</pre>
                     <div
                         class="contacts-container"
                         :class="{
