@@ -245,6 +245,21 @@ h1, h2 {
         .conf-policy {
             margin-top: 40px;
             font-size: 16px;
+
+            a {
+                border-bottom: 1px solid rgba(193, 173, 144, 0.55);
+                color: #e8dcc8;
+                display: inline-block;
+                letter-spacing: 0.04em;
+                padding-bottom: 4px;
+                text-decoration: none;
+                transition: color 0.2s ease, border-color 0.2s ease;
+
+                &:hover {
+                    border-color: #c1ad90;
+                    color: #ffffff;
+                }
+            }
         }
 
         .phone-link {

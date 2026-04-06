@@ -9,6 +9,12 @@
                     <div class="footer-social">
                         <WidgetsSocialIcons />
                     </div>
+
+                    <div class="conf-policy">
+                        <NuxtLink :to="localePath('/privacy-policy')">
+                            {{ $t('policy-conf') }}
+                        </NuxtLink>
+                    </div>
                 </div>
                 <div class="footer-column col-xl-6 col-lg-6 col-12">
                     <div class="contact-icon phone-contact-icon"></div>
