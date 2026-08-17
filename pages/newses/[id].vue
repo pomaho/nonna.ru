@@ -6,9 +6,6 @@ const {locale} = useI18n();
 const newsId = ref(parseFloat(route.params.id) || null);
 const fetchParams = {
     server: true,
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
     transform: (parquet) => parquet.data
 };
 

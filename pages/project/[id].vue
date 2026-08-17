@@ -4,9 +4,6 @@ const route = useRoute();
 const {locale} = useI18n();
 const projectId = ref(parseFloat(route.params.id) || null);
 const fetchParams = {
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
     transform: (response) => response.data
 };
 

@@ -1,9 +1,6 @@
 <script setup>
 const {locale} = useI18n();
 const fetchParams = {
-    headers: {
-        authorization: 'Bearer ' + useRuntimeConfig().public.bearerToken,
-    },
     transform: (response) => response.data
 };
 

@@ -29,11 +29,12 @@ export default defineNuxtConfig({
     },
     devtools: {enabled: true},
     runtimeConfig: {
+        apiProxyTarget: process.env.API_PROXY_TARGET || 'http://cms:1337',
+        apiBearerToken: process.env.API_BEARER_TOKEN || '',
         public: {
-            apiBase: process.env.BASE_API_URL,
-            apiBaseFiles: process.env.BASE_API_FILES_URL,
-            url: process.env.SITE_URL,
-            bearerToken: process.env.API_BEARER_TOKEN,
+            apiBase: process.env.BASE_API_URL || '/api',
+            apiBaseFiles: process.env.BASE_API_FILES_URL || '',
+            url: process.env.SITE_URL || 'http://localhost:3000',
         }
     },
 })
