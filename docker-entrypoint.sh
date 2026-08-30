@@ -13,4 +13,8 @@ if [ -n "${API_BEARER_TOKEN_FILE:-}" ]; then
   export NUXT_API_BEARER_TOKEN
 fi
 
+if [ "$(id -u)" -eq 0 ]; then
+  exec su-exec node "$@"
+fi
+
 exec "$@"
