@@ -4,27 +4,25 @@
             <h2>{{$t('menu-item-contacts')}}</h2>
             <div class="row">
                 <div class="footer-column col-xl-6 col-lg-6 col-12">
-                    <img class="footer-logo" src="/images/nonna-new.png" alt="Nonna footer logo">
-                    <p
-                        class="footer-text"
-                        v-html="$t('footer-text').replaceAll('--br--', '<br/>')"
-                    ></p>
+                    <MediaLogo/>
 
                     <div class="footer-social">
                         <WidgetsSocialIcons />
-                        <nuxt-link :to="localePath('/')" class="conf-policy nav-link" aria-current="page">{{ $t('policy-conf') }}</nuxt-link>
+                    </div>
+
+                    <div class="conf-policy">
+                        <NuxtLink :to="localePath('/privacy-policy')">
+                            {{ $t('policy-conf') }}
+                        </NuxtLink>
                     </div>
                 </div>
                 <div class="footer-column col-xl-6 col-lg-6 col-12">
                     <div class="contact-icon phone-contact-icon"></div>
-                    <WidgetsPhoneLink :phone="contacts.phone"/>
                     <WidgetsAddress />
                 </div>
             </div>
         </div>
     </section>
 </template>
-
-<script setup>
-import contacts from '~/data/contacts.json';
+<script setup lang="ts">
 </script>

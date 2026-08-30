@@ -1,18 +1,21 @@
 <template>
     <section
-        :class="'intro-section ' + cssClass"
+        :class="'intro-section video-section' + cssClass"
     >
-        <video class="video-background" preload="auto" autoplay loop="loop" muted="muted">
-            <source :src="video" type="video/mp4">
-            <source :src="videoWebm" type="video/webm">
+        <WidgetsHeader />
+        <video v-if="video || videoWebm"
+               class="video-background"
+               preload="none"
+               controls=""
+               poster="/images/about/video-poster.png" width="100%">
+            <source v-if="video" :src="video" type="video/mp4">
+            <source v-if="videoWebm" :src="videoWebm" type="video/webm">
             Sorry, your browser does not support HTML5 video.
         </video>
-        <div class="shading"></div>
-        <div class="container">
-            <div class="nonna-container">
-                <WidgetsHeader />
-            </div>
-        </div>
+        <img v-else
+             class="video-background"
+             src="/images/about/video-poster.png"
+             alt="Nonna">
     </section>
 </template>
 
@@ -20,9 +23,11 @@
 defineProps({
     video: {
         type: String,
+        default: '',
     },
     videoWebm: {
         type: String,
+        default: '',
     },
     cssClass: {
         type: String,

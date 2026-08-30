@@ -1,27 +1,92 @@
 <script setup>
 import {useRoute} from 'vue-router';
-import {sanitizeCmsHtml} from '~/utils/sanitize-cms-html.mjs';
+import {cmsHtmlToText, sanitizeCmsHtml} from '~/utils/sanitize-cms-html.mjs';
 
 const route = useRoute();
 const {locale} = useI18n();
 const parquetId = ref(route.params.id || null);
-const fetchParams = {
-    server: true,
-    transform: (parquet) => parquet.data
+const parquet = ref(null);
+const projects = ref([]);
+const isLoading = ref(true);
+
+const content = computed(() => ({
+    categoryContent: Array.isArray(projects.value)
+        ? projects.value.filter((project) => project.parquet?.id === parquet.value?.id)
+        : [],
+    categoriesType: 'collection'
+}));
+
+const fetchParquetById = async (id) => {
+    const response = await $fetch(`${useRuntimeConfig().public.apiBase}/parquets/${id}`, {
+        query: {
+            populate: '*',
+        },
+    });
+
+    return response?.data?.attributes
+        ? {
+            id: response.data.id,
+            ...response.data.attributes,
+        }
+        : response?.data || null;
 };
 
-const parquetsApiUrl = `${useRuntimeConfig().public.apiBase}/parquets/`;
-const {data: parquetDefault} = await useFetch(`${parquetsApiUrl}${parquetId.value}?populate=*`, fetchParams);
+onMounted(async () => {
+    try {
+        const parquetDefault = await fetchParquetById(parquetId.value);
+        const localizedId = parquetDefault?.localizations?.length
+            ? parquetDefault.localizations[0].id
+            : parquetId.value;
+        let parquetLocalized = parquetDefault;
 
-const localizedId = parquetDefault.value?.localizations && parquetDefault.value?.localizations.length ? parquetDefault.value.localizations[0].id : parquetId.value;
-const {data: parquetLocalized} = await useFetch(`${parquetsApiUrl}${localizedId}?populate=*`, fetchParams);
+        if (localizedId !== parquetId.value) {
+            try {
+                parquetLocalized = await fetchParquetById(localizedId);
+            } catch (error) {
+                console.error(error);
+            }
+        }
 
-const parquets = {
-    [parquetDefault.value?.locale]: parquetDefault.value,
-    [parquetLocalized.value?.locale]: parquetLocalized.value,
-}
+        const parquets = {
+            [parquetDefault?.locale]: parquetDefault,
+            [parquetLocalized?.locale]: parquetLocalized,
+        };
 
-const parquet = ref(parquets[locale.value] || parquetDefault.value);
+        parquet.value = parquets[locale.value] || parquetDefault;
+    } catch (error) {
+        console.error(error);
+        parquet.value = null;
+    }
+
+    try {
+        const projectsResponse = await $fetch(`${useRuntimeConfig().public.apiBase}/projects`, {
+            query: {
+                locale: locale.value,
+                populate: '*',
+            },
+        });
+
+        projects.value = projectsResponse?.data || [];
+    } catch (error) {
+        console.error(error);
+        projects.value = [];
+    } finally {
+        isLoading.value = false;
+    }
+});
+
+const parquetTitle = computed(() => cmsHtmlToText(parquet.value?.name));
+
+useHead(() => ({
+    meta: [
+        {name: 'description', content: parquetTitle.value},
+        {name: 'og:description', content: parquetTitle.value},
+        {name: 'twitter:description', content: parquetTitle.value},
+        {name: 'og:title', content: parquetTitle.value}
+    ],
+    titleTemplate: '%s - ' + parquetTitle.value,
+}));
+
 </script>
 
 <template>
@@ -32,13 +97,15 @@ const parquet = ref(parquets[locale.value] || parquetDefault.value);
                     <WidgetsHeader/>
                     <div class="section-content">
                         <h1>{{ $t('parquet-intro-heading') }}</h1>
-                        <p>{{ $t('parquet-intro-text') }}</p>
                     </div>
                 </div>
             </div>
         </section>
-        <div v-if="!parquet">
+        <div v-if="isLoading">
             <p class="pending-message">Loading...</p>
+        </div>
+        <div v-else-if="!parquet">
+            <p class="pending-message">{{ $t('content-unavailable') }}</p>
         </div>
         <div v-else>
             <section class="two-columns">
@@ -49,8 +116,24 @@ const parquet = ref(parquets[locale.value] || parquetDefault.value);
                             <img class="main-image" :src="useRuntimeConfig().public.apiBaseFiles + parquet.image.url" alt="">
                         </div>
                         <div class="column-2 col-lg-8 col-12">
-                            <h3 class="heading">{{ parquet.name }}</h3>
+                            <h3 class="heading" v-html="sanitizeCmsHtml(parquet.name)"></h3>
                             <div class="text" v-html="sanitizeCmsHtml(parquet.description)"></div>
+
+                            <div class="parquet-specifications">
+                                <div class="specs-row">
+                                    <div class="specification-name"><p>{{ $t('parquet-country') }}:</p></div>
+                                    <div class="specification-value"><p>{{ parquet.country?.name }}</p></div>
+                                </div>
+                                <div class="specs-row">
+                                    <div class="specification-name"><p>{{ $t('parquet-wood-type') }}:</p></div>
+                                    <div class="specification-value"><p>{{ parquet.wood?.name }}</p></div>
+                                </div>
+                                <div class="specs-row">
+                                    <div class="specification-name"><p>{{ $t('parquet-color') }}:</p></div>
+                                    <div class="specification-value"><p>{{ parquet.color?.name }}</p></div>
+                                </div>
+                            </div>
+
                             <nuxt-link :to="localePath('/collection')" class="nonna-btn black-text-btn" aria-current="page">
                                 {{ $t('parquet-back-to-collection-button') }}
                             </nuxt-link>
@@ -58,42 +141,20 @@ const parquet = ref(parquets[locale.value] || parquetDefault.value);
                     </div>
                 </div>
             </section>
-            <section class="specification-section">
+
+            <section class="parquet-images" v-if="parquet.images && parquet.images.length">
                 <div class="container">
-                    <h2 class="specification-heading">{{ $t('parquet-specifications-heading') }}</h2>
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr>
-                            <td><h4 class="specification-name">{{ $t('parquet-country') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.country?.name }}</p></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="specification-name">{{ $t('parquet-wood-type') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.wood?.name }}</p></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="specification-name">{{ $t('parquet-color') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.color?.name }}</p></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="specification-name">{{ $t('parquet-pattern') }}</h4></td>
-                            <td><p class="specification-value">{{ parquet.type_of_picture?.name }}</p></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            <section class="parquet-projects">
-                <div class="container">
-                    <p class="parquet-used-projects">{{ $t('parquet-used-in-projects') }} {{ parquet.name }}</p>
-                    <div class="row gy-4">
-                        <div class="col-xl-4 col-lg-6 col-12" v-for="(image, index) in parquet.projectImages"
-                             :key="index">
-                            <img class="parquet-project-image" :src="image"/>
-                        </div>
+                    <div class="images-container">
+                        <img class="main-image" v-for="(image, index) in parquet.images" :src="useRuntimeConfig().public.apiBaseFiles + image.url" alt="">
                     </div>
                 </div>
             </section>
+
+            <SectionsListOfContent
+                :description="`${$t('parquet-used-in-projects')} ${parquet.name}`"
+                :content="content"
+                :content-type="'project'"
+            />
         </div>
     </div>
 </template>

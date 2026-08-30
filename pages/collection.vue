@@ -1,18 +1,53 @@
 <script setup>
-const {locale} = useI18n();
-const fetchParams = {
-    transform: (response) => response.data
-};
+const {locale, t} = useI18n();
+const parquets = ref([]);
+const categories = ref([]);
+const isLoading = ref(true);
 
-const {data: parquets} = await useFetch(`${useRuntimeConfig().public.apiBase}/parquets?locale=${locale.value}&populate=*`, fetchParams);
+const content = computed(() => ({
+    categories: Array.isArray(categories.value) ? categories.value : [],
+    categoryContent: Array.isArray(parquets.value) ? parquets.value : [],
+}));
 
-const {data: categories} = await useFetch(`${useRuntimeConfig().public.apiBase}/woods?locale=${locale.value}`, fetchParams);
+onMounted(async () => {
+    try {
+        const [parquetsResponse, categoriesResponse] = await Promise.all([
+            $fetch(`${useRuntimeConfig().public.apiBase}/parquets`, {
+                query: {
+                    locale: locale.value,
+                    populate: '*',
+                },
+            }),
+            $fetch(`${useRuntimeConfig().public.apiBase}/woods`, {
+                query: {
+                    locale: locale.value,
+                },
+            }),
+        ]);
 
-const content = ref({
-    categories,
-    categoryContent: parquets,
+        parquets.value = parquetsResponse?.data || [];
+        categories.value = categoriesResponse?.data || [];
+    } catch (error) {
+        console.error(error);
+        parquets.value = [];
+        categories.value = [];
+    } finally {
+        isLoading.value = false;
+    }
 });
 
+useHead(() => {
+    const description = t('seo-page-description');
+    return {
+        titleTemplate: `%s - ${t('menu-item-collection')}`,
+        meta: [
+            {name: 'description', content: description},
+            {name: 'og:description', content: description},
+            {name: 'twitter:description', content: description},
+            {name: 'og:title', content: description}
+        ]
+    };
+});
 </script>
 
 
@@ -24,7 +59,7 @@ const content = ref({
             :background="`collection/section-1-bg.jpeg`"
             :with-header="true"
         />
-        <div v-if="!parquets || !categories">
+        <div v-if="isLoading">
             <p class="color: black;">Loading....</p>
         </div>
         <SectionsListOfContent v-else

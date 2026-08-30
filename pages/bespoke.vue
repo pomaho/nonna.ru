@@ -19,6 +19,19 @@
 
 <script setup>
 import bespokes from '~/data/bespoke.json';
+const {t} = useI18n();
+useHead(() => {
+    const description = t('seo-page-description');
+    return {
+        titleTemplate: `%s - ${t('menu-item-bespoke')}`,
+        meta: [
+            {name: 'description', content: description},
+            {name: 'og:description', content: description},
+            {name: 'twitter:description', content: description},
+            {name: 'og:title', content: description}
+        ]
+    };
+});
 </script>
 
 <style scoped>

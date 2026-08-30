@@ -1,34 +1,79 @@
 <script setup>
 import {useRoute} from 'vue-router';
-import {sanitizeCmsHtml} from '~/utils/sanitize-cms-html.mjs';
+import {cmsHtmlToText, sanitizeCmsHtml} from '~/utils/sanitize-cms-html.mjs';
 
 const route = useRoute();
 const {locale} = useI18n();
 const newsId = ref(parseFloat(route.params.id) || null);
-const fetchParams = {
-    server: true,
-    transform: (parquet) => parquet.data
+const news = ref(null);
+const isLoading = ref(true);
+
+const fetchNewsById = async (id) => {
+    const response = await $fetch(`${useRuntimeConfig().public.apiBase}/site-news-many/${id}`, {
+        query: {
+            populate: '*',
+        },
+    });
+
+    return response?.data?.attributes
+        ? {
+            id: response.data.id,
+            ...response.data.attributes,
+        }
+        : response?.data || null;
 };
 
-const newsesApiUrl = `${useRuntimeConfig().public.apiBase}/site-news-many/`;
-const {data: newsDefault} = await useFetch(`${newsesApiUrl}${newsId.value}?populate=*`, fetchParams);
+onMounted(async () => {
+    try {
+        const newsDefault = await fetchNewsById(newsId.value);
+        const localizedId = newsDefault?.localizations?.length
+            ? newsDefault.localizations[0].id
+            : newsId.value;
+        let newsLocalized = newsDefault;
 
-const localizedId = newsDefault.value?.localizations && newsDefault.value?.localizations.length ? newsDefault.value.localizations[0].id : newsId.value;
-const {data: newsLocalized} = await useFetch(`${newsesApiUrl}${localizedId}?populate=*`, fetchParams);
+        if (localizedId !== newsId.value) {
+            try {
+                newsLocalized = await fetchNewsById(localizedId);
+            } catch (error) {
+                console.error(error);
+            }
+        }
 
-const newses = {
-    [newsDefault.value?.locale]: newsDefault.value,
-    [newsLocalized.value?.locale]: newsLocalized.value,
-};
+        const newses = {
+            [newsDefault?.locale]: newsDefault,
+            [newsLocalized?.locale]: newsLocalized,
+        };
 
-const news = ref(newses[locale.value] || newsDefault.value);
+        news.value = newses[locale.value] || newsDefault;
+    } catch (error) {
+        console.error(error);
+        news.value = null;
+    } finally {
+        isLoading.value = false;
+    }
+});
+
+const newsTitle = computed(() => cmsHtmlToText(news.value?.name));
+
+useHead(() => ({
+    meta: [
+        {name: 'description', content: newsTitle.value},
+        {name: 'og:description', content: newsTitle.value},
+        {name: 'twitter:description', content: newsTitle.value},
+        {name: 'og:title', content: newsTitle.value}
+    ],
+    titleTemplate: '%s - ' + newsTitle.value,
+}));
 
 </script>
 
 <template>
     <div class="news-page">
-        <div v-if="!news">
+        <div v-if="isLoading">
             <p class="pending-message">Loading...</p>
+        </div>
+        <div v-else-if="!news">
+            <p class="pending-message">{{ $t('content-unavailable') }}</p>
         </div>
         <div v-else>
             <section class="news-intro-section intro-section">
@@ -36,7 +81,7 @@ const news = ref(newses[locale.value] || newsDefault.value);
                     <div class="nonna-container">
                         <WidgetsHeader/>
                         <div class="section-content">
-                            <h1>{{ news.name }}</h1>
+                            <h1 v-html="sanitizeCmsHtml(news.name)"></h1>
                         </div>
                     </div>
                 </div>

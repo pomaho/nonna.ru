@@ -2,11 +2,27 @@
 import {sanitizeCmsHtml} from '~/utils/sanitize-cms-html.mjs';
 
 const {locale} = useI18n();
-const fetchParams = {
-    transform: (response) => response.data
+const contacts = ref([]);
+const contactsSafe = computed(() => Array.isArray(contacts.value) ? contacts.value : []);
+
+const loadContacts = async () => {
+    try {
+        const response = await $fetch(`${useRuntimeConfig().public.apiBase}/contacts`, {
+            query: {
+                locale: locale.value,
+                populate: '*',
+            },
+        });
+
+        contacts.value = response?.data?.map((contact) => contact?.attributes ?? contact) || [];
+    } catch (error) {
+        console.error(error);
+        contacts.value = [];
+    }
 };
 
-const {data: contacts} = await useFetch(`${useRuntimeConfig().public.apiBase}/contacts?locale=${locale.value}&populate=*`, fetchParams);
+onMounted(loadContacts);
+watch(locale, loadContacts);
 
 </script>
 
@@ -25,11 +41,12 @@ const {data: contacts} = await useFetch(`${useRuntimeConfig().public.apiBase}/co
                         :class="{
                             first: index === 0,
                         }"
-                        v-for="(contact, index) in contacts" :key="index">
-                        <h3 class="heading">{{contact.address}}</h3>
-                        <h4 class="sub-heading">{{contact.sub_address}}</h4>
+                        v-for="(contact, index) in contactsSafe" :key="index">
+                        <h3 class="heading" v-html="sanitizeCmsHtml(contact.address)"></h3>
+                        <h4 class="sub-heading" v-html="sanitizeCmsHtml(contact.sub_address)"></h4>
                         <p class="text" v-html="sanitizeCmsHtml(contact.work_time)"></p>
                         <WidgetsPhoneLink :phone="contact.phone"/>
+                        <WidgetsMap :mapLink="contact.map_link"/>
                     </div>
                 </div>
             </div>

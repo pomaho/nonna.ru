@@ -1,8 +1,38 @@
 export default defineNuxtConfig({
     app: {
         head: {
-            title: 'Nonna - лучший паркет!',
-        }
+            charset: 'utf-8',
+            viewport: 'width=device-width, initial-scale=1',
+            title: 'Nonna',
+            meta: [
+                {
+                    name: 'theme-color',
+                    content: '#303030',
+                    media: '(prefers-color-scheme: light)'
+                },
+                {
+                    name: 'theme-color',
+                    content: '#303030',
+                    media: '(prefers-color-scheme: dark)'
+                },
+                {
+                    name: 'description',
+                    content: 'Nonna'
+                },
+                {
+                    name: 'og:description',
+                    content: 'Nonna'
+                },
+                {
+                    name: 'twitter:description',
+                    content: 'Nonna'
+                },
+                {
+                    name: 'og:title',
+                    content: 'Nonna'
+                },
+            ],
+        },
     },
     css: ['@/assets/css/main.css', '@/assets/scss/app.scss'],
     modules: ['@nuxtjs/i18n'],

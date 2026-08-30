@@ -22,6 +22,27 @@
     h1 {
         font-size: 48px;
     }
+
+    .trailer-page {
+        .two-images.first,
+        .two-images.second {
+            .column-1 {
+                justify-content: flex-start;
+
+                .main-image {
+                    width: 350px;
+                }
+            }
+            .column-2 {
+                justify-content: flex-start;
+                .main-image {
+                    width: 500px;
+                    aspect-ratio: 1;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
 }
 
 @include media-breakpoint-down(xl) {
@@ -86,7 +107,7 @@
                 }
             }
         }
-        p {
+        h1, p {
             width: auto !important;
         }
     }
@@ -236,41 +257,58 @@
 
     .show-mobile-nav-container {
         display: flex;
-
-        .language {
-            display: block;
-            text-align: left;
-            margin-top: 30px;
-        }
     }
 
     .language {
-        display: none;
+        margin-left: 30px;
+    }
+
+    .trailer-page {
+        .two-images.first,
+        .two-images.second {
+            .column-2 {
+                padding-top: 40px;
+            }
+        }
+
+        .trailer-desc {
+            .column-2 {
+                align-items: flex-start;
+                padding: 30px 0;
+            }
+        }
     }
 }
 
 @include media-breakpoint-down(sm) {
     .intro-section {
         .header-logo-and-menu {
-            top: 60px;
-            flex-direction: column;
-            align-items: center;
+            top: 20px;
+            padding: 0 20px;
 
+
+            .header-mobile-menu-and-lang {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .language {
+                    margin:10px 0;
+                    font-size: 16px;
+                }
+            }
             .navbar {
                 .navbar-toggler {
                     margin: 0 auto;
                 }
             }
         }
-    }
 
-    .about-page {
-        .intro-section {
-            .header-logo-and-menu ~ .section-content {
-                margin-top: 120px;
-            }
+        .intro-section-text {
+            margin-top: 20px;
         }
     }
+
     h1 {
         font-size: 24px;
     }
@@ -301,6 +339,17 @@
                     width: auto;
                 }
 
+                .footer-social {
+                    margin-top: 30px;
+                    text-align: center;
+                    border-bottom: 2px solid #c1ad90;
+                    padding-bottom: 40px;
+
+                    li:last-child {
+                        margin-right: 0;
+                    }
+                }
+
                 .phone-contact-icon {
                     margin-top: 70px;
                 }
@@ -308,6 +357,10 @@
                 .address-container {
                     h4, p {
                         font-size: 16px;
+                    }
+
+                    .phone-link {
+                        margin-top: 0;
                     }
                 }
             }
@@ -324,6 +377,8 @@
     }
 
     .list-of-content-section {
+        padding: 50px 0;
+
         .category-links {
             .navbar {
                 flex-wrap: nowrap;
@@ -354,7 +409,7 @@
 
     .nonna-btn {
         font-size: 16px;
-        padding: 20px 40px;
+        padding: 20px 40px !important;
     }
 
     .two-columns {
@@ -370,6 +425,29 @@
 
         .text {
             font-size: 16px;
+        }
+
+        .instagram-contact-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        &.section-author {
+            padding: 40px 0 !important;
+        }
+
+        .main-image {
+            width: 100%;
+        }
+    }
+
+    .parquet-images {
+        .images-container {
+            .main-image {
+                max-width: 100%;
+                margin-top: 20px;
+                margin-right: 0;
+            }
         }
     }
 
@@ -421,4 +499,52 @@
             padding: 60px 0;
         }
     }
+    .trailer-page {
+        .two-images.first,
+        .two-images.second {
+            .column-2 {
+                padding-top: 40px;
+            }
+        }
+
+        .trailer-desc {
+            .column-2 {
+                .trailer-desc-text {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .bespoke-page {
+        .intro-section {
+            .nonna-container {
+                flex-direction: column;
+
+                .header-logo-and-menu {
+                    position: relative;
+                    top: 0;
+                    padding-bottom: 30px;
+                }
+            }
+        }
+    }
+
+    .why-nonna {
+        &.video-section {
+
+            .video-description {
+                margin-top: 30px;
+                text-align: justify;
+                color: black;
+            }
+
+            .video-background {
+                float: none;
+                margin-right: 0;
+                width: 100%;
+            }
+        }
+    }
+
 }

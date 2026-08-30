@@ -17,7 +17,6 @@ defineProps({
                         <nuxt-link :to="localePath(menuItem.href)" class="nav-link" aria-current="page">{{ $t(menuItem.text) }}</nuxt-link>
                     </li>
                 </ul>
-                <WidgetsLanguage />
             </div>
             <div class="close-mobile-menu">
                 <img

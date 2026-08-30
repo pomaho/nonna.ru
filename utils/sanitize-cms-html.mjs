@@ -25,3 +25,35 @@ export function sanitizeCmsHtml(value) {
 
     return sanitizeHtml(value, CMS_HTML_OPTIONS)
 }
+
+export function cmsHtmlToText(value) {
+    if (typeof value !== 'string') {
+        return ''
+    }
+
+    const withBlockSpacing = value.replace(
+        /<(?:br\s*\/?|\/(?:p|div|li|h[1-6]))\s*>/gi,
+        ' ',
+    )
+
+    return sanitizeHtml(withBlockSpacing, {
+        allowedTags: [],
+        allowedAttributes: {},
+        nonTextTags: CMS_HTML_OPTIONS.nonTextTags,
+    })
+        .replace(/\u00a0/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+}
+
+export function cmsHtmlToPhone(value) {
+    const plainText = cmsHtmlToText(value)
+    const match = plainText.match(/\+?\d[\d\s().-]{5,}\d/)
+
+    if (!match) {
+        return ''
+    }
+
+    const digits = match[0].replace(/\D/g, '')
+    return match[0].trim().startsWith('+') ? `+${digits}` : digits
+}

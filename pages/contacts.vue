@@ -7,10 +7,25 @@
             :with-header="true"
         />
         <SectionsContacts />
-        <SectionsContactsMap />
     </div>
 </template>
 
+<script setup>
+const {t} = useI18n();
+useHead(() => {
+    const description = t('seo-page-description');
+    return {
+        titleTemplate: `%s - ${t('menu-item-contacts')}`,
+        meta: [
+            {name: 'description', content: description},
+            {name: 'og:description', content: description},
+            {name: 'twitter:description', content: description},
+            {name: 'og:title', content: description}
+        ]
+    };
+});
+
+</script>
 <style scoped>
 
 </style>

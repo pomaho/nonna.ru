@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { sanitizeCmsHtml } from './sanitize-cms-html.mjs'
+import { cmsHtmlToPhone, cmsHtmlToText, sanitizeCmsHtml } from './sanitize-cms-html.mjs'
 
 test('preserves the shared CMS formatting allowlist', () => {
     const html = '<p>Text <strong>bold</strong><br><a href="https://example.com/path">link</a></p>'
@@ -38,4 +38,20 @@ test('returns an empty string for absent or non-string CMS values', () => {
     assert.equal(sanitizeCmsHtml(), '')
     assert.equal(sanitizeCmsHtml(null), '')
     assert.equal(sanitizeCmsHtml({}), '')
+})
+
+test('converts CMS rich text into a single plain-text metadata value', () => {
+    assert.equal(
+        cmsHtmlToText('<p>Частная квартира в&nbsp;<br>ЖК «Сердце Столицы»<br>Москва</p>'),
+        'Частная квартира в ЖК «Сердце Столицы» Москва',
+    )
+    assert.equal(cmsHtmlToText(null), '')
+})
+
+test('extracts one normalized dial target from rich CMS phone text', () => {
+    assert.equal(
+        cmsHtmlToPhone('<p>+7 (925) 677-66-88<br>Только по записи</p>'),
+        '+79256776688',
+    )
+    assert.equal(cmsHtmlToPhone('<p>Call us later</p>'), '')
 })

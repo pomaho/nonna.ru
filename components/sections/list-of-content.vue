@@ -1,7 +1,7 @@
 <template>
     <section :class="'list-of-content-section ' + cssClass">
         <div class="container">
-            <p>{{ description }}</p>
+            <p v-html="sanitizeCmsHtml(description.replaceAll('--br--', '<br/>'))"></p>
             <WidgetsCategoryLinks v-if="showCategories && content.categories"
                 :categories="content.categories"
                 :change-category="changeCategory"
@@ -17,6 +17,8 @@
 </template>
 
 <script setup>
+import {sanitizeCmsHtml} from '~/utils/sanitize-cms-html.mjs';
+
 const props = defineProps({
     content: Object,
     description: {

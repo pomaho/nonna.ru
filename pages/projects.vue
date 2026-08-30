@@ -1,18 +1,50 @@
 <script setup>
-const {locale} = useI18n();
-const fetchParams = {
-    transform: (response) => response.data
-};
+const {locale, t} = useI18n();
+const projects = ref([]);
+const categories = ref([]);
 
-const {data: projects} = await useFetch(`${useRuntimeConfig().public.apiBase}/projects?locale=${locale.value}&populate=*`, fetchParams);
-
-const {data: categories} = await useFetch(`${useRuntimeConfig().public.apiBase}/type-of-properties?locale=${locale.value}`, fetchParams);
-
-
-const content = ref({
-    categories,
-    categoryContent: projects,
+const content = computed(() => ({
+    categories: Array.isArray(categories.value) ? categories.value : [],
+    categoryContent: Array.isArray(projects.value) ? projects.value : [],
     categoriesType: 'collection'
+}));
+
+onMounted(async () => {
+    try {
+        const [projectsResponse, categoriesResponse] = await Promise.all([
+            $fetch(`${useRuntimeConfig().public.apiBase}/projects`, {
+                query: {
+                    locale: locale.value,
+                    populate: '*',
+                },
+            }),
+            $fetch(`${useRuntimeConfig().public.apiBase}/type-of-properties`, {
+                query: {
+                    locale: locale.value,
+                },
+            }),
+        ]);
+
+        projects.value = projectsResponse?.data || [];
+        categories.value = categoriesResponse?.data || [];
+    } catch (error) {
+        console.error(error);
+        projects.value = [];
+        categories.value = [];
+    }
+});
+
+useHead(() => {
+    const description = t('seo-page-description');
+    return {
+        titleTemplate: `%s - ${t('menu-item-projects')}`,
+        meta: [
+            {name: 'description', content: description},
+            {name: 'og:description', content: description},
+            {name: 'twitter:description', content: description},
+            {name: 'og:title', content: description}
+        ]
+    };
 });
 
 </script>

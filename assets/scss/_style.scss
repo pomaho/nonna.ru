@@ -1,8 +1,59 @@
+.nonna-main-logo {
+    width: 225px;
+
+    path {
+        fill: #c1ad91;
+    }
+}
+
+.main-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1, h2, h3 {
+    font-family: 'Sovmod', sans-serif;
+    text-transform: uppercase;
+}
+
 .intro-section {
     height: 100vh;
 
     > .container {
         height: 100%;
+        z-index: 2;
+        position: relative;
+    }
+
+    .intro-section-heading {
+        width: 1000px;
+    }
+
+    .intro-section-text {
+        width: 800px;
+    }
+}
+
+.home-page {
+    .intro-section-1 {
+        background-position: 50% 50%;
+    }
+    .intro-section-3 {
+        .intro-section-text {
+            width: 500px;
+        }
+    }
+    .intro-section-4 {
+        .shading {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .intro-section-text {
+            width: 620px;
+        }
+    }
+    .intro-section-6 {
+        background-position: 50% 0;
     }
 }
 
@@ -10,7 +61,9 @@
     position: absolute;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+    pointer-events: none !important;
+    z-index: 1;
 }
 
 .nonna-container {
@@ -21,6 +74,7 @@
     align-items: center;
     justify-content: center;
 }
+
 
 .section-content {
     display: block;
@@ -37,7 +91,7 @@
     p {
         margin: 40px auto 0;
         display: block;
-        font-weight: 100;
+        font-weight: 300;
     }
 
     .nonna-btn {
@@ -45,7 +99,7 @@
     }
 
     .header-logo-and-menu {
-        top: 60px;
+        top: 30px;
     }
 }
 
@@ -53,6 +107,12 @@
     .intro-section {
         p {
             width: 600px;
+        }
+
+        &:first-child {
+            .section-content {
+                margin-top: 100px;
+            }
         }
     }
 }
@@ -63,9 +123,11 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    z-index: 3;
+    padding: 0 80px;
 
     .navbar {
-        text-transform: uppercase;
+        //text-transform: uppercase;
 
         .nav-item {
             &:not(:first-child) {
@@ -83,10 +145,32 @@
             }
         }
     }
+    .sidenav-menu {
+        //text-transform: uppercase;
+
+        .nav-item {
+
+            .nav-link {
+                color: $menu-item-color;
+                font-weight: 400;
+
+                &:hover,
+                &.router-link-active {
+                    color: $menu-active-item-color;
+                }
+            }
+        }
+    }
+
+
+    .header-mobile-menu-and-lang {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 .navbar {
-    text-transform: uppercase;
+    //text-transform: uppercase;
 
     .nav-item {
         .nav-link {
@@ -107,7 +191,7 @@ h1, h2 {
     color: white;
     padding: 30px 100px;
     border: 1px solid white;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     border-radius: 300px;
     display: inline-block;
 }
@@ -122,14 +206,13 @@ h1, h2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: max(875px, 100vh);
+    //min-height: max(875px, 100vh);
     background-color: #303030;
     padding-top: 100px;
     padding-bottom: 100px;
     text-align: center;
 
     .row {
-        height: 670px;
         text-align: left;
         margin-top: 65px;
 
@@ -162,6 +245,21 @@ h1, h2 {
         .conf-policy {
             margin-top: 40px;
             font-size: 16px;
+
+            a {
+                border-bottom: 1px solid rgba(193, 173, 144, 0.55);
+                color: #e8dcc8;
+                display: inline-block;
+                letter-spacing: 0.04em;
+                padding-bottom: 4px;
+                text-decoration: none;
+                transition: color 0.2s ease, border-color 0.2s ease;
+
+                &:hover {
+                    border-color: #c1ad90;
+                    color: #ffffff;
+                }
+            }
         }
 
         .phone-link {
@@ -224,7 +322,7 @@ h1, h2 {
 .phone-link {
     text-decoration: none;
     color: white;
-    font-size: 48px;
+    font-size: 36px;
     display: inline-block;
 }
 
@@ -249,9 +347,12 @@ h1, h2 {
     color: $text-description-color;
     padding: 100px 0;
 
+    .project-page & {
+        padding: 0 0 100px 0;
+    }
+
     p {
         font-weight: 300;
-        width: 1100px;
     }
 
     .category-links {
@@ -281,6 +382,10 @@ h1, h2 {
         height: 100%;
         aspect-ratio: 1;
         object-fit: cover;
+
+        .project-page & {
+            object-position: bottom;
+        }
     }
 
     .nonna-btn {
@@ -293,6 +398,7 @@ h1, h2 {
     .navbar-nav {
         .nav-item {
             font-weight: 600;
+            cursor: pointer;
 
             .nav-link.active {
                 color: $menu-active-item-color;
@@ -327,7 +433,7 @@ h1, h2 {
             font-size: 16px;
             width: 80%;
             text-align: center;
-            text-transform: uppercase;
+            //text-transform: uppercase;
             font-weight: 400;
             color: white;
         }
@@ -359,7 +465,7 @@ h1, h2 {
 
     .language-link {
         text-decoration: none;
-        color: $text-description-color;
+        color: #dadada;
         font-family: 'Inter', sans-serif;
     }
 }
@@ -381,6 +487,14 @@ h1, h2 {
         width: 100%;
         aspect-ratio: 1;
         object-fit: cover;
+
+        .project-page & {
+            object-position: bottom;
+            width: 65%;
+            float:left;
+            margin-right: 40px;
+            margin-bottom: 20px;
+        }
     }
 
     .heading {
@@ -410,6 +524,16 @@ h1, h2 {
             margin-top: 40px;
         }
 
+        .map-widget {
+            width: 100%;
+            height: 400px;
+            margin-top: 30px;
+
+            .iframe-map {
+                width: 100%;
+                height: 100%;
+            }
+        }
     }
 
 
@@ -438,13 +562,6 @@ h1, h2 {
 }
 
 .trailer-page {
-    .video-background {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-    }
     .two-images {
         min-height: 100vh;
         padding: 80px 0;
@@ -487,7 +604,7 @@ h1, h2 {
 
         .trailer-desc-text {
             color: black;
-            text-transform: uppercase;
+            //text-transform: uppercase;
             font-size: 20px;
             font-weight: 700;
         }
@@ -506,7 +623,7 @@ h1, h2 {
             .wood-type {
                 font-weight: 400;
                 color: $menu-active-item-color;
-                text-transform: uppercase;
+                //text-transform: uppercase;
             }
         }
         .column-2 {
@@ -546,7 +663,7 @@ h1, h2 {
 
                 .specification-name,
                 .specification-value {
-                    text-transform: uppercase;
+                    //text-transform: uppercase;
                     color: $menu-active-item-color;
                     font-size: 20px;
                     margin: 0;
@@ -601,6 +718,14 @@ h1, h2 {
             justify-content: flex-start;
         }
     }
+
+    .hover-box .content-box:hover {
+        opacity: 0;
+    }
+
+    .responsive-name {
+        display: block;
+    }
 }
 
 .project-page {
@@ -641,7 +766,7 @@ h1, h2 {
         }
 
         p {
-            text-transform: uppercase;
+            //text-transform: uppercase;
             font-size: 20px;
             font-weight: 400;
         }
@@ -665,6 +790,7 @@ h1, h2 {
 .sidenav-menu {
     position: fixed;
     top: 0;
+    z-index: 1000000;
     left: 4000px;
     width: 100%;
     height: 100%;
@@ -686,7 +812,7 @@ h1, h2 {
 
     .navbar-nav {
         text-align: left;
-        text-transform: uppercase;
+        //text-transform: uppercase;
         font-weight: 400;
     }
 
@@ -706,4 +832,116 @@ h1, h2 {
     display: none;
     flex-direction: column;
     justify-content: center;
+}
+
+.parquet-specifications {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+
+    .specs-row {
+        display: flex;
+        flex-direction: row;
+
+        .specification-name {
+            width: 350px;
+            color: $menu-active-item-color;
+            font-weight: 400;
+        }
+
+        .specification-value {
+            text-align: right;
+        }
+    }
+}
+
+.video-background {
+    position: relative;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
+
+    &.mobile {
+        display: none;
+    }
+
+    .why-nonna & {
+        width: auto;
+    }
+}
+
+.nonna-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    .footer & {
+        align-items: flex-start;
+
+        .nonna-main-logo {
+            width: 365px;
+            max-width: 100%;
+        }
+    }
+}
+
+.about-page {
+    .video-section {
+        background: #303030;
+        height: auto;
+        .header-logo-and-menu {
+            position: relative;
+            top: 0;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+    }
+    .about-section-6 {
+        background-position: top;
+    }
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.why-nonna {
+    &.video-section {
+        padding-bottom: 50px;
+
+        .video-description {
+            text-align: justify;
+            color: black;
+            font-weight: 300;
+        }
+
+        .video-background {
+            float: left;
+            margin-right: 50px;
+            width: 65%;
+        }
+    }
+}
+
+.parquet-images {
+    .images-container {
+        display: flex;
+        flex-flow: wrap;
+
+        .main-image {
+            max-width: 30%;
+            aspect-ratio: 1;
+            margin-top: 20px;
+            margin-right: 20px;
+            object-fit: cover;
+            object-position: bottom;
+        }
+    }
 }
