@@ -1,4 +1,6 @@
 <script setup>
+import {sanitizeCmsHtml} from '~/utils/sanitize-cms-html.mjs';
+
 const {locale} = useI18n();
 const fetchParams = {
     transform: (response) => response.data
@@ -26,7 +28,7 @@ const {data: contacts} = await useFetch(`${useRuntimeConfig().public.apiBase}/co
                         v-for="(contact, index) in contacts" :key="index">
                         <h3 class="heading">{{contact.address}}</h3>
                         <h4 class="sub-heading">{{contact.sub_address}}</h4>
-                        <p class="text" v-html="contact.work_time"></p>
+                        <p class="text" v-html="sanitizeCmsHtml(contact.work_time)"></p>
                         <WidgetsPhoneLink :phone="contact.phone"/>
                     </div>
                 </div>

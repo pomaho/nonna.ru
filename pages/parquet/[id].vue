@@ -1,5 +1,6 @@
 <script setup>
 import {useRoute} from 'vue-router';
+import {sanitizeCmsHtml} from '~/utils/sanitize-cms-html.mjs';
 
 const route = useRoute();
 const {locale} = useI18n();
@@ -49,7 +50,7 @@ const parquet = ref(parquets[locale.value] || parquetDefault.value);
                         </div>
                         <div class="column-2 col-lg-8 col-12">
                             <h3 class="heading">{{ parquet.name }}</h3>
-                            <div class="text" v-html="parquet.description"></div>
+                            <div class="text" v-html="sanitizeCmsHtml(parquet.description)"></div>
                             <nuxt-link :to="localePath('/collection')" class="nonna-btn black-text-btn" aria-current="page">
                                 {{ $t('parquet-back-to-collection-button') }}
                             </nuxt-link>

@@ -1,5 +1,6 @@
 <script setup>
 import {useRoute} from 'vue-router';
+import {sanitizeCmsHtml} from '~/utils/sanitize-cms-html.mjs';
 
 const route = useRoute();
 const {locale} = useI18n();
@@ -47,7 +48,7 @@ const news = ref(newses[locale.value] || newsDefault.value);
                             <img class="main-image" :src="useRuntimeConfig().public.apiBaseFiles + news.image?.url" alt="">
                         </div>
                         <div class="column-2 col-lg-8 col-12">
-                            <p class="text" v-html="news.description"></p>
+                            <p class="text" v-html="sanitizeCmsHtml(news.description)"></p>
                         </div>
                     </div>
                 </div>
