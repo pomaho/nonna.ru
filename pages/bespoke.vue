@@ -5,7 +5,7 @@
             :text="$t(`bespoke-intro-section-text`)"
             :button="$t(`bespoke-intro-section-button`)"
             :buttonLink="'about'"
-            :background="`bespoke/section-1-bg.jpeg`"
+            :background="`bespoke/section-1-bg.webp`"
             :with-header="true"
         />
         <SectionsTwoColumnsLeftOrRight

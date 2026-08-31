@@ -3,7 +3,7 @@
         <SectionsIntro
             :title="$t(`contacts-intro-section-title`)"
             :text="$t(`contacts-intro-section-text`)"
-            :background="`contacts/section-1-bg.jpeg`"
+            :background="`contacts/section-1-bg.webp`"
             :with-header="true"
         />
         <SectionsContacts />

@@ -7,7 +7,7 @@
             :key="index"
             :title="$t(`about-section-${number}-title`)"
             :text="$t(`about-section-${number}-text`)"
-            :background="`about/section-${number}-bg.jpeg`"
+            :background="`about/section-${number}-bg.webp`"
             :with-header="false"
         />
     </div>

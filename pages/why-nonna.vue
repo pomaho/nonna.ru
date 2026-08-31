@@ -22,7 +22,7 @@ useHead(() => {
         <SectionsIntro
             :title="$t(`why-nonna-intro-section-title`)"
             :text="$t(`why-nonna-intro-section-text`)"
-            :background="`why-nonna/section-1-bg.jpeg`"
+            :background="`why-nonna/section-1-bg.webp`"
             :with-header="true"
         />
 
@@ -58,7 +58,7 @@ useHead(() => {
     <SectionsIntro
         :title="$t(`why-nonna-cleanup-section-title`)"
         :text="$t(`why-nonna-cleanup-section-text`)"
-        :background="`why-nonna/section-cleanup-bg.jpg`"
+        :background="`why-nonna/section-cleanup-bg.webp`"
         :with-header="false"
     />
 

@@ -55,7 +55,7 @@ useHead(() => {
         <SectionsIntro
             :title="$t(`projects-intro-section-title`)"
             :text="$t(`projects-intro-section-text`)"
-            :background="`projects/section-1-bg.jpeg`"
+            :background="`projects/section-1-bg.webp`"
             :with-header="true"
         />
         <SectionsListOfContent

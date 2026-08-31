@@ -137,7 +137,7 @@ useHead(() => {
         <SectionsIntro
             :title="$t('policy-page-title')"
             :text="$t('policy-page-text')"
-            :background="`contacts/section-1-bg.jpeg`"
+            :background="`contacts/section-1-bg.webp`"
             :with-header="true"
         />
 

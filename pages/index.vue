@@ -8,7 +8,7 @@
             :text="$t(`home-section-${number}-text`)"
             :button="$t(`home-section-${number}-button`)"
             :buttonLink="buttonLinks[number - 1]"
-            :background="`home/section-${number}-bg.jpeg`"
+            :background="`home/section-${number}-bg.webp`"
             :with-header="index === 0"
         />
     </div>

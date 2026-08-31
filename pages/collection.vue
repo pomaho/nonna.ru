@@ -56,7 +56,7 @@ useHead(() => {
         <SectionsIntro
             :title="$t(`collection-intro-section-title`)"
             :text="$t(`collection-intro-section-text`)"
-            :background="`collection/section-1-bg.jpeg`"
+            :background="`collection/section-1-bg.webp`"
             :with-header="true"
         />
         <div v-if="isLoading">
