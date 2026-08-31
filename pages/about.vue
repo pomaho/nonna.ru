@@ -1,6 +1,6 @@
 <template>
     <div class="about-page">
-        <SectionsIntroVideoBg />
+        <SectionsIntroVideoBg :video="aboutVideo" />
         <SectionsIntro
             v-for="(number, index) in sections"
             :class="`about-section-${number}`"
@@ -15,7 +15,8 @@
 
 <script setup lang="ts">
 const sections = [1, 2, 3, 4, 5, 6];
-const {t} = useI18n();
+const {locale, t} = useI18n();
+const aboutVideo = computed(() => locale.value === 'ru' ? '/IMG_0821.mp4' : '/IMG_0819.mp4');
 useHead(() => {
     const description = t('seo-page-description');
     return {
