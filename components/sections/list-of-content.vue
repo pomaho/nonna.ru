@@ -18,6 +18,7 @@
 
 <script setup>
 import {sanitizeCmsHtml} from '~/utils/sanitize-cms-html.mjs';
+import {dedupeContentByName} from '~/utils/dedupe-content.mjs';
 
 const props = defineProps({
     content: Object,
@@ -47,7 +48,7 @@ const currentCategory = ref('all');
 
 const filteredCategoryContent = computed(() => {
     if (currentCategory.value === 'all') {
-        return props.content.categoryContent;
+        return dedupeContentByName(props.content.categoryContent);
     }
     return props.content.categoryContent.filter((content) => content[props.categoryProp]?.name === currentCategory.value);
 });
