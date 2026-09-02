@@ -95,13 +95,13 @@ useHead(() => ({
                 </div>
             </section>
 
-            <section class="two-columns section-author">
+            <section v-if="project.author || project.author_instagram" class="two-columns section-author">
                 <div class="container">
                     <div class="row">
                         <div class="column-1 col-lg-6 col-12">
                             <div class="contact-icon instagram-contact-icon"></div>
-                            <p class="author-text">{{ $t('project-author') }} <br>{{ project.author }}</p>
-                            <a class="instagram-link" target="_blank" :href="`https://instagram.com/${project.author_instagram}`">@{{project.author_instagram}}</a>
+                            <p v-if="project.author" class="author-text">{{ $t('project-author') }} <br>{{ project.author }}</p>
+                            <a v-if="project.author_instagram" class="instagram-link" target="_blank" rel="noopener noreferrer" :href="`https://instagram.com/${project.author_instagram}`">@{{project.author_instagram}}</a>
                         </div>
                     </div>
                 </div>
